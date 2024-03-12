@@ -24,3 +24,4 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         storage:
           engine: MyISAM
+

@@ -1,69 +1,55 @@
 package com.mcommandes.web.controller;
 
+import com.mcommandes.client.PanierClient;
 import com.mcommandes.dao.CommandesDao;
 import com.mcommandes.model.Commande;
-import com.mcommandes.web.exceptions.CommandeNotFoundException;
-import com.mcommandes.web.exceptions.ImpossibleAjouterCommandeException;
+import com.mcommandes.model.Panier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Date;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/mcommandes")
+
 public class CommandeController {
 
+    private final PanierClient panierClient;
     private final CommandesDao commandesDao;
 
-    public CommandeController(CommandesDao commandesDao) {
-        this.commandesDao = commandesDao;
+    @GetMapping("/hello")
+    public ResponseEntity<String> sayHello() {
+        return ResponseEntity.ok("Hello from mcommandes service!");
     }
+    @PostMapping("/validercommande/{panierId}")
+    public ResponseEntity<Commande> validerCommande(@PathVariable int panierId) {
+        // Retrieve panier information using PanierClient
+        Panier panier = panierClient.getPanierById(panierId);
 
-    @PostMapping("/commandes")
-    public ResponseEntity<Commande> ajouterCommande(@RequestBody Commande commande) {
-        // Add your logic to save the commande to the database using CommandesDao
+        // Validate the panier (add your validation logic here)
+
+        // Create a new command based on the panier information
+        Commande commande = createCommandeFromPanier(panier);
+
+        // Save the command using CommandesDao
         Commande savedCommande = commandesDao.save(commande);
-        if (savedCommande != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedCommande);
-        } else {
-            throw new ImpossibleAjouterCommandeException("Impossible d'ajouter cette commande");
-        }
+
+        // Now that the command is saved, remove the panier
+        panierClient.supprimerPanier(panierId); // Assuming you have a method to delete a panier by its ID
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCommande);
     }
 
-    @GetMapping("/commandes/{id}")
-    public ResponseEntity<Commande> recupererUneCommande(@PathVariable int id) {
-        Optional<Commande> optionalCommande = commandesDao.findById(id);
-        if (optionalCommande.isPresent()) {
-            return ResponseEntity.ok(optionalCommande.get());
-        } else {
-            throw new CommandeNotFoundException("Cette commande n'existe pas");
-        }
+    // Method to create a Commande from a Panier
+    private Commande createCommandeFromPanier(Panier panier) {
+        Commande commande = new Commande();
+        commande.setProducts(panier.getProducts()); // Assuming Commande has a list of products
+        commande.setDateCommande(new Date());
+        commande.setQuantite(panier.getQuantite());
+        // Set other properties as needed
+        return commande;
     }
-
-
-    @GetMapping
-    public ResponseEntity<List
-            <Commande>> getAllCommands() {
-        List<Commande> allCommands = commandesDao.findAll();
-        if (!allCommands.isEmpty()) {
-            return ResponseEntity.ok(allCommands);
-        } else {
-            return ResponseEntity.noContent().build();
-        }
-    }
-
-  /*  @GetMapping("/with-products/{command-id}")
-    public ResponseEntity<List
-            <Commande>> getAllCommands(@PathVariable("command-id") Integer commandId) {
-        List<Commande> allCommands = commandesDao.findCommandWithProducts(commandId);
-        if (!allCommands.isEmpty()) {
-            return ResponseEntity.ok(allCommands);
-        } else {
-            return ResponseEntity.noContent().build();
-        }
-    }
-*/
 }
