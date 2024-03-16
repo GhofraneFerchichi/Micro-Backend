@@ -1,12 +1,21 @@
 package com.mproduits.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -21,68 +30,10 @@ public class Product {
 
     private Double prix;
 
+    private int quantite;
 
-    public Product() {
-    }
 
-    public Product(int id, String titre, String description, String image, Double prix) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.image = image;
-        this.prix = prix;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(Double prix) {
-        this.prix = prix;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", titre='" + titre + '\'' +
-                ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
-                ", prix=" + prix +
-                '}';
-    }
    @ManyToMany
     @JoinTable(
             name = "panier_product",
@@ -90,5 +41,8 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "panier_id"))
     private Set<Panier> paniers = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

@@ -31,6 +31,8 @@ public class Product {
     private Double prix;
 
 
+    private int quantite;
+
 
     // Getter and setter for paniers
 

@@ -27,5 +27,8 @@ public class Panier {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products = new ArrayList<>(); // Collection to hold products
 
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
+    private User user;
     // Other fields and methods...
 }

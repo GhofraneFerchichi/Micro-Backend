@@ -13,6 +13,7 @@ spring:
     name: mproduits
   config:
     import: optional:configserver:http://localhost:9007
+    user-url: http://localhost:9010 # Define the user service URL here
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
@@ -26,3 +27,9 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
+
+feign:
+  client:
+    config:
+      default:
+        url: ${spring.config.user-url}

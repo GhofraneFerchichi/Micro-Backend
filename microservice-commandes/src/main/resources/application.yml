@@ -13,6 +13,8 @@ spring:
     name: mcommandes
   config:
     import: optional:configserver:http://localhost:9007
+    user-url: http://localhost:9010  # Define th
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
@@ -25,3 +27,8 @@ spring:
         storage:
           engine: MyISAM
 
+feign:
+  client:
+    config:
+      default:
+        url: ${spring.config.user-url}

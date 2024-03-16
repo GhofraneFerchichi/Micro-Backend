@@ -14,6 +14,7 @@ spring:
   config:
     import: optional:configserver:http://localhost:9007
     mproduits-url: http://localhost:9004  # Define the property here
+    user-url: http://localhost:9010  # Define the user service URL here
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
@@ -30,4 +31,4 @@ feign:
   client:
     config:
       default:
-        url: ${spring.config.mproduits-url}
+        url: ${spring.config.mproduits-url},${spring.config.user-url}

@@ -1,0 +1,53 @@
+server:
+  port: 9010
+
+spring:
+  application:
+    name: user-microservice
+  cloud:
+    config:
+      import: optional:configserver:http://localhost:9007
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+
+## File upload stuff
+spring.servlet.multipart.max-file-size: 2MB
+spring.servlet.multipart.max-request-size: 2MB
+
+## Payment stripe api
+stripe.key.secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb3oSaBjxB9oOETbDZAgeHvwcoSK3Qmg1RGjT2QuiLIiV3zF1XDkdoix300JyfSeCvJ
+
+## SMS sender
+app.TWILIO_ACCOUNT_SID: AC32df8d718d0e3d142e8eb61799503f34
+app.TWILIO_AUTH_TOKEN: 4fe230c90558e3912b2b3e18e236b69c
+
+## JWT
+spring.data.rest.base-path: /api
+app.jwt.secret: RandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKey
+app.jwt.expiration-in-ms: 86400000
+authentication.internal-api-key: Internal!@
+spring.main.allow-circular-references: true
+spring.main.allow-bean-definition-overriding: true
+## Frontend
+allowed.origins: https://localhost:4200
+
+spring.mail:
+  host: smtp.gmail.com
+  port: 587
+  username: medtaharejeb97@gmail.com
+  password: nvwmsljexsoytvll
+  properties:
+    mail.smtp.auth: true
+    mail.smtp.connectiontimeout: 5000
+    mail.smtp.timeout: 5000
+    mail.smtp.writetimeout: 5000
+    mail.smtp.starttls.enable: true

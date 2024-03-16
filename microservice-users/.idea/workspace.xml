@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="06cd8e2d-1f75-43a5-9568-49ca57728fd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../config-server/src/main/resources/configurations/user.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/UserMicroserviceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/controller/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/controller/InternalApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/CustomUserDetaisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/InternalApiAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/UserPrincipal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/jwt/IJwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/jwt/JwtAuthorizationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/security/jwt/JwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/service/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/java/com/example/usermicroservice/util/SecurityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-microservice/src/test/java/com/example/usermicroservice/UserMicroserviceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/client/PanierClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/client/PanierClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/model/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/model/Commande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/web/controller/CommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/java/com/mcommandes/web/controller/CommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-commandes/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-commandes/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/client/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/client/ProductClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/dao/PanierDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/dao/PanierDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/model/Panier.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/model/Panier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/web/controller/PanierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-panier/src/main/java/com/example/mpanier/web/controller/PanierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-panier/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-panier/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/dao/CommandesDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/web/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-produits/src/main/java/com/mproduits/web/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microservice-produits/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../microservice-produits/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2dbeDRT874ehO1Ku5D0Gy2jXpnw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/ghofr/.m2/repository/org/springframework/security/spring-security-core/6.2.2/spring-security-core-6.2.2.jar",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "57c40b118b22e8aa5d89e21908202345"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ghofr\Downloads\testApp\testApp\microservice-users\src\main\java\com\example\microserviceusers" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MicroserviceUsersApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="microservice-users" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.microserviceusers.MicroserviceUsersApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="06cd8e2d-1f75-43a5-9568-49ca57728fd5" name="Changes" comment="" />
+      <created>1710281088268</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710281088268</updated>
+      <workItem from="1710281090125" duration="21000" />
+      <workItem from="1710281205012" duration="640000" />
+      <workItem from="1710281885116" duration="3868000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

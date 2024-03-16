@@ -12,7 +12,7 @@ public interface ProductClient {
     @PostMapping("/add/{panierId}/{productId}")
     public void addProductToPanier(@PathVariable int panierId, @PathVariable int productId);
 
-    @GetMapping("/api/v1/mproduits/produits/{productId}")
-    Product getProduct(@PathVariable int productId);
+    @GetMapping(value = "/api/v1/mproduits/produits/{id}")
+    public Product recupererUnProduit(@PathVariable int id);
 
 }
