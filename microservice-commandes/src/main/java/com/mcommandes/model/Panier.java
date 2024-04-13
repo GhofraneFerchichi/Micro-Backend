@@ -22,12 +22,14 @@ public class Panier {
 
     private Double prixTotale;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany
     @JoinTable(name = "panier_product",
             joinColumns = @JoinColumn(name = "panier_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products = new ArrayList<>(); // Collection to hold products
 
+    @OneToOne
+    @JoinColumn(name = "commande_id")
+    private Commande commande;
 
-    // Other fields and methods...
 }

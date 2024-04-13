@@ -79,18 +79,7 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 			<version>3.0.0</version> <!-- Specify the version here -->
 		</dependency>
-        <dependency>
-            <groupId>com.mproduits</groupId>
-            <artifactId>mproduits</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-		<dependency>
-			<groupId>com.mproduits</groupId>
-			<artifactId>mproduits</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>com.mproduits</groupId>
 			<artifactId>mproduits</artifactId>

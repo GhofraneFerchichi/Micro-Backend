@@ -2,9 +2,8 @@ package com.example.mpanier.client;
 
 import com.example.mpanier.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "mproduits", url = "${spring.config.mproduits-url}")
 public interface ProductClient {
@@ -15,4 +14,8 @@ public interface ProductClient {
     @GetMapping(value = "/api/v1/mproduits/produits/{id}")
     public Product recupererUnProduit(@PathVariable int id);
 
-}
+    @PutMapping(value = "/api/v1/mproduits/produits/{id}")
+    public Product modifierProduit(@PathVariable int id, @RequestBody Product produitModifie);
+
+
+    }

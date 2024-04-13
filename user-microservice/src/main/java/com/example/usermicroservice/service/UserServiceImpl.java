@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +57,7 @@ public class UserServiceImpl  {
     private void sendVerificationEmail(User user, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
-        String fromAddress = "medtaharejeb97@gmail.com";
+        String fromAddress = "ghofrane.ferchichi@edu.isetcom.tn";
         String senderName = "hello";
         String subject = "Please verify your registration";
         String content = "Hello [[name]],Please click the link below to verify your registration:<br>"
@@ -65,7 +66,7 @@ public class UserServiceImpl  {
 ;
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom("medtaharejeb97@gmail.com");
+        helper.setFrom("ghofrane.ferchichi@edu.isetcom.tn");
         helper.setTo(toAddress);
         helper.setSubject(subject);
         content = content.replace("[[name]]", user.getFirstname());
@@ -80,13 +81,18 @@ public class UserServiceImpl  {
         if (user == null || user.isEnabled()) {
             return false;
         } else {
-            user.setVerificationCode(null);
+            // Set the verification code to null to indicate it's been used
+
+            // Enable the user
             user.setEnabled(true);
+
+            // Save the changes to the database
             userRepository.save(user);
 
             return true;
         }
     }
+
     public User saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.USER);
@@ -115,6 +121,16 @@ public class UserServiceImpl  {
         }
     }
 
+    public User findByUsername(String username) {
+        // Retrieve user from the database based on the username
+        User user = userRepository.findUserByFirstname(username);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+
+        return user;
+    }
     public User findById(long id) throws Exception {
 
         UserPrincipal user = UserServiceImpl.clientAuthenticated();

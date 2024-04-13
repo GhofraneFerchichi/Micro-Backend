@@ -1,3 +1,5 @@
+package com.mcommandes.model;
+
 import com.mcommandes.model.Commande;
 import com.mcommandes.model.Panier;
 

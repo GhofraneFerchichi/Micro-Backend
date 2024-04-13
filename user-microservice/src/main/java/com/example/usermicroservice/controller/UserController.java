@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,7 +78,23 @@ public class UserController {
         }
     }
 
+    @GetMapping("/api/v1/current-user")
+    public User getCurrentUser() {
+        // Retrieve the current authenticated user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            // Return null or handle unauthenticated user
+            return null;
+        }
 
+        // Assuming the user details are stored in a UserDetails object
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        // Assuming you have a service to retrieve user details by username or ID
+        User currentUser = userService.findByUsername(userDetails.getUsername());
+
+        return currentUser;
+    }
 
 
 }

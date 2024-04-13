@@ -23,20 +23,27 @@ public class AuthenticationService {
     @Autowired
     private IJwtProvider jwtProvider;
 
-
+    @Autowired
+    private UserServiceImpl userService; // Inject UserServiceImpl to check user verification status
 
     public User SignInAndReturnJWT(User signInRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword()));
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        // Check if the user account is enabled (verified)
+        if (!userPrincipal.isEnabled()) {
+            throw new RuntimeException("User account is not verified.");
+        }
+
         String jwt = jwtProvider.generateToken(userPrincipal);
         User signInUser = userPrincipal.getUser();
         signInUser.setToken(jwt);
 
         return signInUser;
     }
-    public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
 
+    public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
         org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

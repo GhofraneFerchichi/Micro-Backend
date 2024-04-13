@@ -6,10 +6,10 @@ spring:
     name: user-microservice
   cloud:
     config:
-      import: optional:configserver:http://localhost:9007
+      import: optional:configserver:http://localhost:9012
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/testuser
     username: root
     password:
   jpa:
@@ -41,8 +41,9 @@ allowed.origins: https://localhost:4200
 spring.mail:
   host: smtp.gmail.com
   port: 587
-  username: medtaharejeb97@gmail.com
-  password: nvwmsljexsoytvll
+  username: ghofrane.ferchichi@edu.isetcom.tn
+  password: zzxvnoeavrsbsiwc
+
   properties:
     mail.smtp.auth: true
     mail.smtp.connectiontimeout: 5000

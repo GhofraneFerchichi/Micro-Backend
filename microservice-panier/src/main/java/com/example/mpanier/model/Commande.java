@@ -1,10 +1,9 @@
-package com.mproduits.model;
+package com.example.mpanier.model;
 
-
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class Commande {
     private Boolean commandePayee;
 
     private Double PrixTotale;
+
     @ManyToMany
     @JoinTable(
             name = "commande_product",
@@ -30,10 +30,13 @@ public class Commande {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> products;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToOne(mappedBy = "commande")
     private Panier panier;
+
+
 }

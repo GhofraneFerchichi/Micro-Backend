@@ -12,21 +12,20 @@ spring:
   application:
     name: mpanier
   config:
-    import: optional:configserver:http://localhost:9007
+    import: optional:configserver:http://localhost:9012
     mproduits-url: http://localhost:9004  # Define the property here
     user-url: http://localhost:9010  # Define the user service URL here
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test
+    url: jdbc:mysql://localhost:3306/testuser?createDatabaseIfNotExist=true
     username: root
     password:
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-        storage:
-          engine: MyISAM
-
+    hibernate:
+      ddl-auto: update
 feign:
   client:
     config:
