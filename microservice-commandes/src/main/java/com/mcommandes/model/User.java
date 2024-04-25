@@ -1,6 +1,5 @@
 package com.mcommandes.model;
 
-import com.mproduits.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
