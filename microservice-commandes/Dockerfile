@@ -5,8 +5,8 @@ FROM maven:3.8.4-openjdk-8 AS builder
 WORKDIR /app
 
 # Copy the Maven project files
-COPY ./microservice-produits /app/mproduits
-COPY ./microservice-commandes /app/mcommandes
+COPY /Micro-Backend/microservice-produits /app/mproduits
+COPY . /app/mcommandes
 
 # Resolve dependencies and build mproduits
 RUN mvn -f mproduits/pom.xml clean install -DskipTests
