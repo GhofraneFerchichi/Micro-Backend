@@ -1,0 +1,144 @@
+version: '3.8'
+
+services:
+  # MySQL 8 Database
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3302:3306"  # Corrected port mapping
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # Config Server
+  config-server:
+    image: ghofraneferchichi/config-server
+    container_name: config_server
+    ports:
+      - "9012:9012"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_PROFILES_ACTIVE: native
+    volumes:
+      - ./configurations:/configurations
+
+  # Discovery Server (Eureka)
+  discovery:
+    image: ghofraneferchichi/discovery
+    container_name: discovery_server
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
+    depends_on:
+      - mysql
+    stdin_open: true
+    tty: true
+
+  # Gateway Service
+  gateway:
+    image: ghofraneferchichi/gateway
+    container_name: gateway_service
+    ports:
+      - "8007:8007"
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
+    depends_on:
+      - discovery
+    stdin_open: true
+    tty: true
+
+  # User Microservice
+  user-microservice:
+    image: ghofraneferchichi/musers
+    container_name: user_microservice
+    ports:
+      - "9010:9010"
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
+    depends_on:
+      - discovery
+    stdin_open: true
+    tty: true
+
+  # Produits Microservice
+  produits-microservice:
+    image: ghofraneferchichi/mproduits
+    container_name: produits_microservice
+    ports:
+      - "9004:9004"
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
+    depends_on:
+      - discovery
+    stdin_open: true
+    tty: true
+
+  # Panier Microservice
+  panier-microservice:
+    image: ghofraneferchichi/mpanier
+    container_name: panier_microservice
+    ports:
+      - "9005:9005"
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
+    depends_on:
+      - discovery
+    stdin_open: true
+    tty: true
+
+  # Commande Microservice
+  commande-microservice:
+    image: ghofraneferchichi/mcommandes
+    container_name: commande_microservice
+    ports:
+      - "9009:9009"
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
+    depends_on:
+      - discovery
+    stdin_open: true
+    tty: true
+
+volumes:
+  db_data: {}

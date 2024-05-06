@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mproduits
+  labels:
+    app: mproduits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mproduits
+  template:
+    metadata:
+      labels:
+        app: mproduits
+    spec:
+      containers:
+        - name: mproduits
+          image: ghofraneferchichi/mproduits:latest
+          ports:
+            - containerPort: 9004
