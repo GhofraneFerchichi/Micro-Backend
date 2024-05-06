@@ -159,4 +159,9 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping(value = "/produits/{id}")
+    public String hello(@PathVariable int id) {
+        return "Hello world";
+    }
+
 }
