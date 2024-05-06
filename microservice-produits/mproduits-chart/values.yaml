@@ -1,5 +1,0 @@
-replicaCount: 1
-image:
-  repository: ghofraneferchichi/mproduits
-  tag: latest
-  pullPolicy: IfNotPresent

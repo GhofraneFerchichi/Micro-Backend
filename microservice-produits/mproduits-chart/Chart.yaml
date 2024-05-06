@@ -1,4 +1,0 @@
-apiVersion: v2
-name: mproduits
-description: A Helm chart for deploying mproduits microservice
-version: 0.1.0

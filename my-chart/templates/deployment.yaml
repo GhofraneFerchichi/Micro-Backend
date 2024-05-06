@@ -1,0 +1,288 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_DATABASE
+              value: db
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      containers:
+        - name: config-server
+          image: ghofraneferchichi/config-server
+          ports:
+            - containerPort: 9012
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+spec:
+  selector:
+    app: config-server
+  ports:
+    - protocol: TCP
+      port: 9012
+      targetPort: 9012
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discovery
+  template:
+    metadata:
+      labels:
+        app: discovery
+    spec:
+      containers:
+        - name: discovery
+          image: ghofraneferchichi/discovery
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+          ports:
+            - containerPort: 8761
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery
+spec:
+  selector:
+    app: discovery
+  ports:
+    - protocol: TCP
+      port: 8761
+      targetPort: 8761
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: gateway
+          image: ghofraneferchichi/gateway
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+          ports:
+            - containerPort: 8007
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  selector:
+    app: gateway
+  ports:
+    - protocol: TCP
+      port: 8007
+      targetPort: 8007
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-microservice
+  template:
+    metadata:
+      labels:
+        app: user-microservice
+    spec:
+      containers:
+        - name: user-microservice
+          image: ghofraneferchichi/musers
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+          ports:
+            - containerPort: 9010
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-microservice
+spec:
+  selector:
+    app: user-microservice
+  ports:
+    - protocol: TCP
+      port: 9010
+      targetPort: 9010
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commande-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commande-microservice
+  template:
+    metadata:
+      labels:
+        app: commande-microservice
+    spec:
+      containers:
+        - name: commande-microservice
+          image: ghofraneferchichi/mcommandes
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+          ports:
+            - containerPort: 9009
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: commande-microservice
+spec:
+  selector:
+    app: commande-microservice
+  ports:
+    - protocol: TCP
+      port: 9009
+      targetPort: 9009
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: panier-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: panier-microservice
+  template:
+    metadata:
+      labels:
+        app: panier-microservice
+    spec:
+      containers:
+        - name: panier-microservice
+          image: ghofraneferchichi/mpanier
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+          ports:
+            - containerPort: 9005
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: panier-microservice
+spec:
+  selector:
+    app: panier-microservice
+  ports:
+    - protocol: TCP
+      port: 9005
+      targetPort: 9005
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: produits-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: produits-microservice
+  template:
+    metadata:
+      labels:
+        app: produits-microservice
+    spec:
+      containers:
+        - name: produits-microservice
+          image: ghofraneferchichi/mproduits
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+          ports:
+            - containerPort: 9004
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: produits-microservice
+spec:
+  selector:
+    app: produits-microservice
+  ports:
+    - protocol: TCP
+      port: 9004
+      targetPort: 9004
