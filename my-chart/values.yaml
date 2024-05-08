@@ -35,3 +35,6 @@ panier-microservice:
 produits-microservice:
   image: ghofraneferchichi/mproduits
   port: 9004
+frontend:
+  image: ghofraneferchichi/treefront
+  port: 8077

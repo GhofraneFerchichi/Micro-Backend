@@ -286,3 +286,35 @@ spec:
     - protocol: TCP
       port: 9004
       targetPort: 9004
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghofraneferchichi/treefront
+          ports:
+            - containerPort: 8077
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 8077
+      targetPort: 8077

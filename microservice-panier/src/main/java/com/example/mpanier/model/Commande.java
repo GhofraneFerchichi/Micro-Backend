@@ -1,9 +1,9 @@
 package com.example.mpanier.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +13,7 @@ import java.util.List;
 public class Commande {
     @Id
     @GeneratedValue
+
     private int id;
 
     private Date dateCommande;
