@@ -89,6 +89,23 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+
+            - name: MYSQL_SERVICE_URL
+              value: "http://mysql.default.svc.cluster.local"
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 8761
 ---
@@ -125,6 +142,23 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+
+            - name: MYSQL_SERVICE_URL
+              value: "http://mysql.default.svc.cluster.local"
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 8007
 ---
@@ -161,6 +195,23 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+
+            - name: MYSQL_SERVICE_URL
+              value: "http://mysql.default.svc.cluster.local"
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 9010
 ---
@@ -198,6 +249,22 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: MYSQL_SERVICE_URL
+              value: "http://mysql.default.svc.cluster.local"
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 9009
 
@@ -235,6 +302,20 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 9005
 
@@ -271,6 +352,22 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: MYSQL_SERVICE_URL
+              value: "http://mysql.default.svc.cluster.local"
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 9004
 
