@@ -304,6 +304,24 @@ spec:
       containers:
         - name: frontend
           image: ghofraneferchichi/treefront
+          env:
+            - name: MYSQL_SERVICE_URL
+              value: "http://mysql.default.svc.cluster.local"
+            - name: CONFIG_SERVER_URL
+              value: "http://config-server.default.svc.cluster.local"
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery.default.svc.cluster.local"
+            - name: GATEWAY_SERVICE_URL
+              value: "http://gateway.default.svc.cluster.local"
+            - name: USER_MICROSERVICE_URL
+              value: "http://user-microservice.default.svc.cluster.local"
+            - name: COMMANDE_MICROSERVICE_URL
+              value: "http://commande-microservice.default.svc.cluster.local"
+            - name: PANIER_MICROSERVICE_URL
+              value: "http://panier-microservice.default.svc.cluster.local"
+            - name: PRODUITS_MICROSERVICE_URL
+              value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 80
+
 
