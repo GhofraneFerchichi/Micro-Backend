@@ -306,15 +306,4 @@ spec:
           image: ghofraneferchichi/treefront
           ports:
             - containerPort: 8077
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend
-spec:
-  selector:
-    app: frontend
-  ports:
-    - protocol: TCP
-      port: 8077
-      targetPort: 8077
+
