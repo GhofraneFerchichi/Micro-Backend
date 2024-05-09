@@ -305,5 +305,5 @@ spec:
         - name: frontend
           image: ghofraneferchichi/treefront
           ports:
-            - containerPort: 8077
+            - containerPort: 80
 
