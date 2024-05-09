@@ -7,79 +7,15 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+    - http:
         paths:
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: mysql
-                port:
-                  number: 3306
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: config-server
-                port:
-                  number: 9012
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: discovery
-                port:
-                  number: 8761
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: gateway
-                port:
-                  number: 8007
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: user-microservice
-                port:
-                  number: 9010
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: commande-microservice
-                port:
-                  number: 9009
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: panier-microservice
-                port:
-                  number: 9005
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: produits-microservice
-                port:
-                  number: 9004
-          - path: /?(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: frontend
                 port:
-                  number: 8077
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: api
-                port:
                   number: 80
-
