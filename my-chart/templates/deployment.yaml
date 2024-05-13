@@ -400,7 +400,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghofraneferchichi/treefrontt
+          image: ghofraneferchichi/treefront
           env:
             - name: MYSQL_SERVICE_URL
               value: "http://mysql.default.svc.cluster.local"
