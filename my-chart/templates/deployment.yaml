@@ -420,5 +420,6 @@ spec:
               value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
 
 
