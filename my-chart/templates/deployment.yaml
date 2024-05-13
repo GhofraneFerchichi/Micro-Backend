@@ -400,7 +400,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghofraneferchichi/treefronthome
+          image: ghofraneferchichi/treefronthome:latest
           env:
             - name: MYSQL_SERVICE_URL
               value: "http://mysql.default.svc.cluster.local"
@@ -420,6 +420,6 @@ spec:
               value: "http://produits-microservice.default.svc.cluster.local"
           ports:
             - containerPort: 80
-          imagePullPolicy: Always
+
 
 
