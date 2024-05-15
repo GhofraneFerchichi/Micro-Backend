@@ -4,8 +4,7 @@ metadata:
   name: my-ingress
 spec:
   rules:
-    - host: your-domain.com
-      http:
+    - http:
         paths:
           - path: /mysql
             pathType: Prefix
