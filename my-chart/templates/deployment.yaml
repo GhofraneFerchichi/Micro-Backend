@@ -191,7 +191,7 @@ spec:
     spec:
       containers:
         - name: user-microservice
-          image: ghofraneferchichi/musers:latest
+          image: ghofraneferchichi/musers:1.1
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'

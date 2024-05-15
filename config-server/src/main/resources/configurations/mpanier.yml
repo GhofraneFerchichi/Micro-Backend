@@ -17,7 +17,7 @@ spring:
     user-url: http://10.0.75.250:9010  # Updated with the cluster IP
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.0.83.82:3306/testuser  # Updated with the cluster IP
+    url: jdbc:mysql://10.0.83.82:3306/db  # Updated with the cluster IP
     username: root
     password:
   jpa:

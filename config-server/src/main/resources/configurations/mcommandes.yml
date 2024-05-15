@@ -12,7 +12,7 @@ spring:
     name: mcommandes
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.0.156.86:3306/testuser  # Assuming MySQL is running on this address
+    url: jdbc:mysql://10.0.156.86:3306/db  # Assuming MySQL is running on this address
     username: root
     password:
   jpa:
