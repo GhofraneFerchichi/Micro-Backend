@@ -6,10 +6,10 @@ spring:
     name: user-microservice
   cloud:
     config:
-      import: optional:configserver:http://localhost:9012
+      import: optional:configserver:http://10.0.138.22:9012
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/testuser
+    url: jdbc:mysql://mysql:3306/testuser
     username: root
     password:
   jpa:
@@ -25,8 +25,6 @@ spring.servlet.multipart.max-request-size: 2MB
 
 ## Payment stripe api
 stripe.key.secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb3oSaBjxB9oOETbDZAgeHvwcoSK3Qmg1RGjT2QuiLIiV3zF1XDkdoix300JyfSeCvJ
-
-
 
 ## JWT
 spring.data.rest.base-path: /api

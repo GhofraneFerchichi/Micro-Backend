@@ -13,10 +13,9 @@ spring:
           enabled: true
       routes:
         - id: mcommandes
-          uri: http://localhost:9009
+          uri: lb://commande-microservice   # Using service name instead of localhost
           predicates:
             - Path=/api/v1/mcommandes/**
-
 
 management:
   tracing:

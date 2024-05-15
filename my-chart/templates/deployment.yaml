@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: ghofraneferchichi/config-server
+          image: ghofraneferchichi/config-server:latest
           ports:
             - containerPort: 9012
 ---
@@ -85,7 +85,7 @@ spec:
     spec:
       containers:
         - name: discovery
-          image: ghofraneferchichi/discovery
+          image: ghofraneferchichi/discovery:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -138,7 +138,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghofraneferchichi/gateway
+          image: ghofraneferchichi/gateway:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -191,7 +191,7 @@ spec:
     spec:
       containers:
         - name: user-microservice
-          image: ghofraneferchichi/musers
+          image: ghofraneferchichi/musers:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -245,7 +245,7 @@ spec:
     spec:
       containers:
         - name: commande-microservice
-          image: ghofraneferchichi/mcommandes
+          image: ghofraneferchichi/mcommandes:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -298,7 +298,7 @@ spec:
     spec:
       containers:
         - name: panier-microservice
-          image: ghofraneferchichi/mpanier
+          image: ghofraneferchichi/mpanier:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -348,7 +348,7 @@ spec:
     spec:
       containers:
         - name: produits-microservice
-          image: ghofraneferchichi/mproduits
+          image: ghofraneferchichi/mproduits:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'

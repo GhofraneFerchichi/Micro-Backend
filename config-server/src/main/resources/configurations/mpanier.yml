@@ -7,18 +7,22 @@ eureka:
 
 server:
   port: 9005
+
 spring:
   application:
     name: mpanier
-  cloud:
-    config:
-      uri: http://localhost:9007
+  config:
+    import: optional:configserver:http://10.0.138.22:9012  # Updated with the config server address
+    mproduits-url: http://10.0.125.97:9004  # Updated with the cluster IP
+    user-url: http://10.0.75.250:9010  # Updated with the cluster IP
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/testuser
+    url: jdbc:mysql://10.0.83.82:3306/testuser  # Updated with the cluster IP
     username: root
     password:
   jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQLDialect
