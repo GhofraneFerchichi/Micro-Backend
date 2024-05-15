@@ -12,6 +12,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -26,6 +27,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -40,6 +42,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -54,6 +57,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -68,6 +72,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -82,6 +87,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -96,6 +102,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -110,6 +117,7 @@ spec:
   type: NodePort
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:

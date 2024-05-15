@@ -23,63 +23,63 @@ spec:
   rules:
     - http:
         paths:
-          - path: /(.*)
+          - path: /mysql
             pathType: Prefix
             backend:
               service:
                 name: mysql
                 port:
                   number: 3306
-          - path: /9012
+          - path: /config-server
             pathType: Prefix
             backend:
               service:
                 name: config-server
                 port:
                   number: 9012
-          - path: /8761
+          - path: /discovery
             pathType: Prefix
             backend:
               service:
                 name: discovery
                 port:
                   number: 8761
-          - path: /8007
+          - path: /gateway
             pathType: Prefix
             backend:
               service:
                 name: gateway
                 port:
                   number: 8007
-          - path: /9010
+          - path: /user-microservice
             pathType: Prefix
             backend:
               service:
                 name: user-microservice
                 port:
                   number: 9010
-          - path: /9009
+          - path: /commande-microservice
             pathType: Prefix
             backend:
               service:
                 name: commande-microservice
                 port:
                   number: 9009
-          - path: /9005
+          - path: /panier-microservice
             pathType: Prefix
             backend:
               service:
                 name: panier-microservice
                 port:
                   number: 9005
-          - path: /9004
+          - path: /produits-microservice
             pathType: Prefix
             backend:
               service:
                 name: produits-microservice
                 port:
                   number: 9004
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
