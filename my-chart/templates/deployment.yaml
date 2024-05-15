@@ -22,6 +22,7 @@ spec:
               value: root
           ports:
             - containerPort: 3306
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -55,6 +56,7 @@ spec:
           image: ghofraneferchichi/config-server:latest
           ports:
             - containerPort: 9012
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -91,6 +93,7 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8761
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -127,6 +130,7 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8007
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -161,9 +165,9 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-
           ports:
             - containerPort: 9010
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -199,10 +203,9 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-
           ports:
             - containerPort: 9009
-
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -237,10 +240,9 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-
           ports:
             - containerPort: 9005
-
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -274,10 +276,9 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-
           ports:
             - containerPort: 9004
-
+          imagePullPolicy: Always   # Add this line to enforce image pull always
 ---
 apiVersion: v1
 kind: Service
@@ -311,9 +312,6 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-
           ports:
             - containerPort: 80
-
-
-
+          imagePullPolicy: Always   # Add this line to enforce image pull always
