@@ -36,5 +36,5 @@ produits-microservice:
   image: ghofraneferchichi/mproduits
   port: 9004
 frontend:
-  image: ghofraneferchichi/treefronthome
-  port: 8077
+  image: ghofraneferchichi/tree
+  port: 80
