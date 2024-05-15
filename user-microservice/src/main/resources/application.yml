@@ -1,3 +1,10 @@
+eureka:
+  instance:
+    hostname: 10.0.41.57
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.41.57:8761/eureka
+
 server:
   port: 9010
 

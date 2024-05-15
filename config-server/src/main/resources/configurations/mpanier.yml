@@ -3,7 +3,8 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://10.0.41.57:8761/eureka  # Assuming the Eureka server is running on this address
+
 
 server:
   port: 9005

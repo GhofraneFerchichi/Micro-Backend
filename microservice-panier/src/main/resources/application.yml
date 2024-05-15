@@ -17,7 +17,7 @@ spring:
     user-url: http://10.0.75.250:9010  # Define the user service URL here
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.0.156.86:3306/testuser?createDatabaseIfNotExist=true
+    url: jdbc:mysql://10.0.156.86:3306/db?createDatabaseIfNotExist=true
     username: root
     password:
   jpa:
