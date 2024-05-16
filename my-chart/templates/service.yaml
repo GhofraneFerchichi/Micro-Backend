@@ -69,7 +69,7 @@ spec:
     - protocol: TCP
       port: 9010
       targetPort: 9010
-  type: NodePort
+  type: loadbalancer
 
 ---
 
@@ -84,7 +84,7 @@ spec:
     - protocol: TCP
       port: 9009
       targetPort: 9009
-  type: NodePort
+  type: loadbalancer
 
 ---
 
