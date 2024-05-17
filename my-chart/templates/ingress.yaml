@@ -58,25 +58,25 @@ spec:
                 name: user-microservice
                 port:
                   number: 9010
-          - path: /commande-microservice
+          - path: /mcommandes
             pathType: Prefix
             backend:
               service:
-                name: commande-microservice
+                name: mcommandes
                 port:
                   number: 9009
-          - path: /panier-microservice
+          - path: /mpanier
             pathType: Prefix
             backend:
               service:
-                name: panier-microservice
+                name: mpanier
                 port:
                   number: 9005
-          - path: /produits-microservice
+          - path: /mproduits
             pathType: Prefix
             backend:
               service:
-                name: produits-microservice
+                name: mproduits
                 port:
                   number: 9004
           - path: /
