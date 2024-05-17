@@ -76,10 +76,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: commande-microservice
+  name: mcommandes
 spec:
   selector:
-    app: commande-microservice
+    app: mcommandes
   ports:
     - protocol: TCP
       port: 9009
@@ -91,10 +91,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: panier-microservice
+  name: mpanier
 spec:
   selector:
-    app: panier-microservice
+    app: mpanier
   ports:
     - protocol: TCP
       port: 9005
@@ -106,10 +106,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: produits-microservice
+  name: mproduits
 spec:
   selector:
-    app: produits-microservice
+    app: mproduits
   ports:
     - protocol: TCP
       port: 9004

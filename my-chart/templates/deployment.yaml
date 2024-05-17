@@ -22,20 +22,7 @@ spec:
               value: root
           ports:
             - containerPort: 3306
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-spec:
-  selector:
-    app: mysql
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
-
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -56,20 +43,7 @@ spec:
           image: ghofraneferchichi/config-server:latest
           ports:
             - containerPort: 9012
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: config-server
-spec:
-  selector:
-    app: config-server
-  ports:
-    - protocol: TCP
-      port: 9012
-      targetPort: 9012
-
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -93,20 +67,7 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8761
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: discovery
-spec:
-  selector:
-    app: discovery
-  ports:
-    - protocol: TCP
-      port: 8761
-      targetPort: 8761
-
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -130,20 +91,7 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8007
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: gateway
-spec:
-  selector:
-    app: gateway
-  ports:
-    - protocol: TCP
-      port: 8007
-      targetPort: 8007
-
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -167,130 +115,79 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9010
-          imagePullPolicy: Always   # Add this line to enforce image pull always
+          imagePullPolicy: Always
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: user-microservice
-spec:
-  selector:
-    app: user-microservice
-  ports:
-    - protocol: TCP
-      port: 9010
-      targetPort: 9010
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: commande-microservice
+  name: mcommandes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: commande-microservice
+      app: mcommandes
   template:
     metadata:
       labels:
-        app: commande-microservice
+        app: mcommandes
     spec:
       containers:
-        - name: commande-microservice
+        - name: mcommandes
           image: ghofraneferchichi/mcommandes:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9009
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: commande-microservice
-spec:
-  selector:
-    app: commande-microservice
-  ports:
-    - protocol: TCP
-      port: 9009
-      targetPort: 9009
-
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: panier-microservice
+  name: mpanier
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: panier-microservice
+      app: mpanier
   template:
     metadata:
       labels:
-        app: panier-microservice
+        app: mpanier
     spec:
       containers:
-        - name: panier-microservice
+        - name: mpanier
           image: ghofraneferchichi/mpanier:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9005
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: panier-microservice
-spec:
-  selector:
-    app: panier-microservice
-  ports:
-    - protocol: TCP
-      port: 9005
-      targetPort: 9005
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: produits-microservice
+  name: mproduits
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: produits-microservice
+      app: mproduits
   template:
     metadata:
       labels:
-        app: produits-microservice
+        app: mproduits
     spec:
       containers:
-        - name: produits-microservice
+        - name: mproduits
           image: ghofraneferchichi/mproduits:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9004
-          imagePullPolicy: Always   # Add this line to enforce image pull always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: produits-microservice
-spec:
-  selector:
-    app: produits-microservice
-  ports:
-    - protocol: TCP
-      port: 9004
-      targetPort: 9004
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -311,7 +208,4 @@ spec:
           image: ghofraneferchichi/treefronthome:latest
           env:
             - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-          ports:
-            - containerPort: 80
-          imagePullPolicy: Always   # Add this line to enforce image pull always
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username":
