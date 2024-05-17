@@ -5,19 +5,12 @@ metadata:
   namespace: argocd
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: 57.151.74.62
+      http:
         paths:
-          - path: /mysql
-            pathType: Prefix
-            backend:
-              service:
-                name: mysql
-                port:
-                  number: 3306
           - path: /config-server
             pathType: Prefix
             backend:
