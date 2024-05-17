@@ -209,3 +209,6 @@ spec:
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username":
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
