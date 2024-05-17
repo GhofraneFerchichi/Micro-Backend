@@ -3,7 +3,7 @@ eureka:
     hostname: 10.0.41.57
   client:
     serviceUrl:
-      defaultZone: http://10.0.41.57:8761/eureka
+      defaultZone: http://51.8.66.223:8761/eureka
 
 server:
   port: 9010
@@ -13,10 +13,10 @@ spring:
     name: user-microservice
   cloud:
     config:
-      import: optional:configserver:http://10.0.138.22:9012
+      import: optional:configserver:http://51.8.66.145:9012
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/testuser
+    url: jdbc:mysql://51.8.66.71:3306/db
     username: root
     password:
   jpa:

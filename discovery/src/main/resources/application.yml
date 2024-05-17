@@ -9,6 +9,6 @@ server:
   port: 8761
 spring:
   config:
-    import: optional:configserver:http://10.0.138.22:9012
+    import: optional:configserver:http://51.8.66.145:9012
   application:
     name: discovery

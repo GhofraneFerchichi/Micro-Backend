@@ -3,7 +3,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://10.0.41.57:8761/eureka  # Assuming the Eureka server is running on this address
+      defaultZone: http://51.8.66.223:8761/eureka  # Assuming the Eureka server is running on this address
 
 server:
   port: 9004
@@ -12,10 +12,10 @@ spring:
     name: mproduits
   cloud:
     config:
-      uri: http://10.0.138.22:9012  # Assuming the config server is running on this address
+      uri: http://51.8.66.145:9012  # Assuming the config server is running on this address
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.0.156.86:3306/db  # Assuming MySQL is running on this address
+    url: jdbc:mysql://51.8.66.71:3306/db  # Assuming MySQL is running on this address
     username: root
     password:
   jpa:

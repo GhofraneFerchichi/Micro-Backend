@@ -1,0 +1,31 @@
+trigger:
+  - master
+
+pool:
+  name: Default
+  demands:
+    - agent.name -equals DESKTOP-47P7H1A
+
+resources:
+  - repo: self
+
+variables:
+  tag: 'latest'
+  dockerRegistryServiceConnection: 'DockerHubConnection'
+
+steps:
+  - task: Docker@2
+    displayName: Build Docker image
+    inputs:
+      command: build
+      dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
+      tags: |
+        config-server:$(tag)
+
+  - task: Docker@2
+    displayName: Push image to Docker Hub
+    inputs:
+      command: push
+      containerRegistry: '$(dockerRegistryServiceConnection)'
+      repository: 'ghofraneferchichi/prod'  # Update repository to the correct format
+      tags: 'latest'
