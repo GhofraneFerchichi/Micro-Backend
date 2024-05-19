@@ -22,7 +22,19 @@ spec:
               value: root
           ports:
             - containerPort: 3306
+          command: [ "mysqld" ]
+          args:
+            - "--default-authentication-plugin=mysql_native_password"
+            - "--skip-host-cache"  # Replace this with the recommended approach
+            - "--pid-file=/var/run/mysqld/mysqld.pid"
           imagePullPolicy: Always
+          volumeMounts:
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
 ---
 apiVersion: v1
 kind: Service
@@ -90,11 +102,20 @@ spec:
         - name: discovery
           image: ghofraneferchichi/disc:latest
           env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: SPRING_CONFIG_LOCATION
+              value: "classpath:/application.yml,file:/config/application.yml"
           ports:
             - containerPort: 8761
           imagePullPolicy: Always
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+              subPath: application.yml
+      volumes:
+        - name: config-volume
+          configMap:
+            name: discovery-config
+
 
 ---
 apiVersion: v1
