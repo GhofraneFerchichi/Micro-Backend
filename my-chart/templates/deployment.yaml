@@ -100,20 +100,11 @@ spec:
         - name: discovery
           image: ghofraneferchichi/disc:latest
           env:
-            - name: SPRING_CONFIG_LOCATION
-              value: "classpath:/application.yml,file:/config/application.yml"
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8761
           imagePullPolicy: Always
-          volumeMounts:
-            - name: config-volume
-              mountPath: /config
-              subPath: application.yml
-      volumes:
-        - name: config-volume
-          configMap:
-            name: discovery-config
-
 
 ---
 apiVersion: v1
