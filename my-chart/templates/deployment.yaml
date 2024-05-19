@@ -33,8 +33,6 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: mysql-initdb
-          configMap:
-            name: mysql-initdb-config
 ---
 apiVersion: v1
 kind: Service
