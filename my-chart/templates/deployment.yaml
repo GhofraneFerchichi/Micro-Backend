@@ -22,17 +22,20 @@ spec:
               value: root
           ports:
             - containerPort: 3306
-          command: [ "mysqld" ]
-          args:
-            - "--default-authentication-plugin=mysql_native_password"
-            - "--skip-host-cache"  # Replace this with the recommended approach
-            - "--pid-file=/var/run/mysqld/mysqld.pid"
-          imagePullPolicy: Always
           volumeMounts:
-            - name: mysql-initdb
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: initdb-config
               mountPath: /docker-entrypoint-initdb.d
+              subPath: init.sql
       volumes:
-        - name: mysql-initdb
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+        - name: initdb-config
+          configMap:
+            name: mysql-initdb-config
+
 ---
 apiVersion: v1
 kind: Service
