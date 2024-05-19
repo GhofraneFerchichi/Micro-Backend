@@ -22,19 +22,12 @@ spec:
               value: root
           ports:
             - containerPort: 3306
+          imagePullPolicy: Always
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql
-            - name: initdb-config
-              mountPath: /docker-entrypoint-initdb.d
-              subPath: init.sql
       volumes:
         - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysql-pvc
-        - name: initdb-config
-          configMap:
-            name: mysql-initdb-config
 ---
 apiVersion: v1
 kind: Service
