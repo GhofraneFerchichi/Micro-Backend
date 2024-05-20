@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-initdb-config
-data:
-  init.sql: |
-    SET GLOBAL host_cache_size=0;
-    # Add more initialization SQL statements if needed
