@@ -22,6 +22,13 @@ spec:
               value: root
           ports:
             - containerPort: 3306
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "200m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
           imagePullPolicy: Always
           volumeMounts:
             - name: mysql-data
@@ -41,6 +48,7 @@ spec:
       port: 3306
       targetPort: 3306
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -61,8 +69,14 @@ spec:
           image: ghofraneferchichi/config:latest
           ports:
             - containerPort: 9012
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
-
 ---
 apiVersion: v1
 kind: Service
@@ -76,6 +90,7 @@ spec:
       port: 9012
       targetPort: 9012
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -99,8 +114,14 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8761
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
-
 ---
 apiVersion: v1
 kind: Service
@@ -138,6 +159,13 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8007
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -152,6 +180,7 @@ spec:
       port: 8007
       targetPort: 8007
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -175,8 +204,14 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9010
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
-
 ---
 apiVersion: v1
 kind: Service
@@ -190,6 +225,7 @@ spec:
       port: 9010
       targetPort: 9010
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -213,8 +249,14 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9009
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
-
 ---
 apiVersion: v1
 kind: Service
@@ -228,6 +270,7 @@ spec:
       port: 9009
       targetPort: 9009
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -251,8 +294,14 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9005
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
-
 ---
 apiVersion: v1
 kind: Service
@@ -266,6 +315,7 @@ spec:
       port: 9005
       targetPort: 9005
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -289,8 +339,14 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 9004
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
-
 ---
 apiVersion: v1
 kind: Service
@@ -304,6 +360,7 @@ spec:
       port: 9004
       targetPort: 9004
   type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -327,6 +384,13 @@ spec:
               value: '{"spring.datasource.url": "jdbc:mysql://mysql:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
           imagePullPolicy: Always
 ---
 apiVersion: v1
