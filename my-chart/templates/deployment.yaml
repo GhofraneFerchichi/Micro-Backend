@@ -322,7 +322,7 @@ kind: Deployment
 metadata:
   name: mproduits
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: mproduits
