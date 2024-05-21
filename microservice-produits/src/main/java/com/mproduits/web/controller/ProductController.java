@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin(origins = "http://localhost:4200/addproduct")
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/mproduits")
 public class ProductController {
@@ -85,7 +84,7 @@ public class ProductController {
     // Get all Products
     @GetMapping(value = "/produits")
     public List<ProductDTO> listeDesProduits() {
-        List<Product> products = (List<Product>) productDao.findAll();
+        List<Product> products = productDao.findAll();
         List<ProductDTO> productDTOs = new ArrayList<>();
 
         // Convert products to DTOs
@@ -139,7 +138,7 @@ public class ProductController {
     public ResponseEntity<Void> supprimerProduit(@PathVariable int id) {
         // Use the userId parameter as needed
         // Example: productDao.deleteByIdAndUserId(id, userId);
-        Optional<Product> produit = (Optional<Product>) productDao.findById(id);
+        Optional<Product> produit = productDao.findById(id);
         if (produit.isPresent()) {
             productDao.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -150,7 +149,7 @@ public class ProductController {
 
     // Get User for a Product by its ID
     @GetMapping("/products/{productId}/user")
-    public ResponseEntity<User> getUserForProduct(@PathVariable Long productId) {
+    public ResponseEntity<User> getUserForProduct() {
         // Use the userId parameter as needed
         User user = userFeignClient.getUserById(userFeignClient.getCurrentUser().getId()); // Assuming userFeignClient is properly configured
         if (user != null) {
