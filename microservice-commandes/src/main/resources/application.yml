@@ -15,12 +15,13 @@ spring:
     import: optional:configserver:http://51.8.66.145:9012
     user-url: http://51.8.67.131:9010  # Define the user service URL here
     mproduits-url: http://51.8.66.238:9004  # Define the property here
+    mpanier-url: http://51.8.67.167:9005
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://51.8.66.71:3306/db?createDatabaseIfNotExist=true
     username: root
-    password:
+    password: root
   jpa:
     properties:
       hibernate:
@@ -32,4 +33,4 @@ feign:
   client:
     config:
       default:
-        url: ${spring.config.user-url},${spring.config.mproduits-url}
+        url: ${spring.config.user-url},${spring.config.mproduits-url},${application.config.mpanier-url}
