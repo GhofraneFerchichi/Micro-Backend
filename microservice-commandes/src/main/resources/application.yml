@@ -33,4 +33,4 @@ feign:
   client:
     config:
       default:
-        url: ${spring.config.user-url},${spring.config.mproduits-url},${application.config.mpanier-url}
+        url: ${spring.config.user-url},${spring.config.mproduits-url},${spring.config.mpanier-url}
