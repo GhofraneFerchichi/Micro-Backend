@@ -67,13 +67,6 @@ spec:
                 name: mproduits
                 port:
                   number: 9004
-          - path: /phpmyadmin
-            pathType: Prefix
-            backend:
-              service:
-                name: phpmyadmin
-                port:
-                  number: 80
           - path: /
             pathType: Prefix
             backend:
