@@ -33,8 +33,15 @@ spec:
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql
+            - name: initdb
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: mysql-data
+          emptyDir: {}
+        - name: initdb
+          configMap:
+            name: mysql-initdb
+
 ---
 apiVersion: v1
 kind: Service
@@ -405,6 +412,4 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
-
----
 
