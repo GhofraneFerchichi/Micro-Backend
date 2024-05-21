@@ -1,0 +1,17 @@
+project: default
+source:
+  repoURL: 'https://github.com/GhofraneFerchichi/Micro-Backend.git'
+  path: my-chart
+  targetRevision: HEAD
+  helm:
+    valueFiles:
+      - values.yaml
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: argocd
+syncPolicy:
+  automated:
+    selfHeal: true
+annotations:
+  argocd.argoproj.io/sync-wave: '-1'
+  argocd-image-updater.argoproj.io/image-list: my-app-container=ghofraneferchichi/my-app:latest
