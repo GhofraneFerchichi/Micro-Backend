@@ -49,7 +49,7 @@ public class PanierController {
     }
     @GetMapping("/paniers/{id}")
     public Optional<Panier> getPanierById(@PathVariable("id") int id){
-        return panierDao.findById(id);
+        return panierDao.findPanierByUserId(id);
 
     }
 
