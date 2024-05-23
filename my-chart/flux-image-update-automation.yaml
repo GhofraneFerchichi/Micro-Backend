@@ -10,7 +10,7 @@ spec:
     kind: GitRepository
     name: my-app-config-repo
   update:
-    path: ./deployment
+    path: ./templates/deployment
     commit:
       authorName: fluxcd
       authorEmail: fluxcd@users.noreply.github.com
