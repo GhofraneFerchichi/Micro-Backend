@@ -16,7 +16,7 @@ public interface PanierDao extends JpaRepository<Panier, Integer> {
     List<Panier> findByUser(User user);
     Optional<Panier> findByIdAndUser(int id, User user);
 
-    @Query("select p from Panier p where p.user.id = ?1")
+    @Query("select u from User u where u.panier.id = ?1")
     Optional<Panier> findPanierByUserId(int id);
 
 
