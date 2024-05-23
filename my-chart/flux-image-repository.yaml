@@ -1,9 +1,0 @@
-# flux-image-repository.yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
-kind: ImageRepository
-metadata:
-  name: my-app-repo
-  namespace: flux-system
-spec:
-  image: ghofraneferchichi/my-app
-  interval: 1m0s
