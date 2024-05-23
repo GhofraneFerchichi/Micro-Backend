@@ -86,7 +86,7 @@ public class CommandeController {
     }
     @GetMapping("/paniers/{panierId}/totalPrice")
     public double getTotalPriceOfPanier(@PathVariable int panierId) {
-        Panier panier = panierClient.getPanierById(panierId);
+        Panier panier = panierClient.getPanierById(1);
         if (panier != null) {
             return panier.getPrixTotale();
         } else {
