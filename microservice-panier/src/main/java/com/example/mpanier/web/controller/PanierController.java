@@ -139,7 +139,6 @@ public class PanierController {
             panier.getProducts().add(product);
             panier.setQuantite(panier.getQuantite() + 1);
             panier.setPrixTotale(panier.getPrixTotale() + product.getPrix());
-
             // Save the modified panier
             Panier updatedPanier = panierDao.save(panier);
 
@@ -148,6 +147,7 @@ public class PanierController {
             fullPanierResponse.setQuantite(updatedPanier.getQuantite());
             fullPanierResponse.setPrixTotale(updatedPanier.getPrixTotale());
             fullPanierResponse.setProducts(updatedPanier.getProducts());
+
             return ResponseEntity.ok(fullPanierResponse);
         }
 
