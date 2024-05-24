@@ -29,7 +29,6 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "500m"
-          imagePullPolicy: Always
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql
@@ -37,7 +36,8 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: mysql-data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: mysql-pvc
         - name: initdb
           configMap:
             name: mysql-initdb
