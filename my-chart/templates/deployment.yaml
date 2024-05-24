@@ -252,8 +252,18 @@ spec:
         - name: mcommandes
           image: ghofraneferchichi/commandess:latest
           env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://51.8.66.71:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: SPRING_APPLICATION_NAME
+              value: mcommandes
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://51.8.66.223:8761/eureka
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://51.8.66.71:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
           ports:
             - containerPort: 9009
           resources:
