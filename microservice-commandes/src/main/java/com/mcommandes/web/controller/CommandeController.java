@@ -32,7 +32,6 @@ public class CommandeController {
     public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Hello from mcommandes service!");
     }
-
     @PostMapping("/validercommande/{id}")
     public ResponseEntity<Commande> validerCommande(@PathVariable int id, @RequestParam("userId") Long userId) {
         // Retrieve panier and user
@@ -70,7 +69,7 @@ public class CommandeController {
         Double prixTotale = products.stream()
                 .mapToDouble(Product::getPrix)
                 .sum();
-        commande.setPrixTotale(getTotalPriceOfPanier(1));
+        commande.setPrixTotale(prixTotale); // Set the calculated prixTotale directly
 
         // Save commande
         Commande savedCommande = commandesDao.save(commande);
@@ -84,16 +83,16 @@ public class CommandeController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCommande);
     }
+
     @GetMapping("/paniers/{panierId}/totalPrice")
     public double getTotalPriceOfPanier(@PathVariable int panierId) {
-        Panier panier = panierClient.getPanierById(1);
+        Panier panier = panierClient.getPanierById(panierId);
         if (panier != null) {
             return panier.getPrixTotale();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found");
         }
     }
-
 
 
 

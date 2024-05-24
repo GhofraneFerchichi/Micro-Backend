@@ -250,7 +250,7 @@ spec:
     spec:
       containers:
         - name: mcommandes
-          image: ghofraneferchichi/commandesss:latest
+          image: ghofraneferchichi/commandess:latest
           env:
             - name: SPRING_APPLICATION_NAME
               value: mcommandes
