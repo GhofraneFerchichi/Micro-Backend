@@ -16,19 +16,10 @@ spec:
         - name: mysql
           image: mysql:8.0
           env:
-            - name: MYSQL_DATABASE
-              value: db
             - name: MYSQL_ROOT_PASSWORD
               value: root
           ports:
             - containerPort: 3306
-          resources:
-            requests:
-              memory: "500Mi"
-              cpu: "200m"
-            limits:
-              memory: "1Gi"
-              cpu: "500m"
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql

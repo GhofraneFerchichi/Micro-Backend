@@ -5,15 +5,3 @@ metadata:
 data:
   init-db.sql: |
     CREATE DATABASE IF NOT EXISTS db;
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-image-updater-config
-  namespace: argocd
-data:
-  config.yaml: |
-    registries:
-      docker.io:
-        url: https://index.docker.io/v1/
-        credentials: secret:argocd/dockerhub-cred

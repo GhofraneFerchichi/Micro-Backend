@@ -4,7 +4,6 @@ import com.mcommandes.client.PanierClient;
 import com.mcommandes.client.ProductClient;
 import com.mcommandes.client.UserClient;
 import com.mcommandes.dao.CommandesDao;
-import com.mcommandes.model.Product;
 import com.mcommandes.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin(origins = "*")
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/mcommandes")
@@ -32,6 +31,7 @@ public class CommandeController {
     public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Hello from mcommandes service!");
     }
+
     @PostMapping("/validercommande/{id}")
     public ResponseEntity<Commande> validerCommande(@PathVariable int id, @RequestParam("userId") Long userId) {
         // Retrieve panier and user
@@ -69,7 +69,7 @@ public class CommandeController {
         Double prixTotale = products.stream()
                 .mapToDouble(Product::getPrix)
                 .sum();
-        commande.setPrixTotale(prixTotale); // Set the calculated prixTotale directly
+        commande.setPrixTotale(prixTotale);
 
         // Save commande
         Commande savedCommande = commandesDao.save(commande);
@@ -90,12 +90,9 @@ public class CommandeController {
         if (panier != null) {
             return panier.getPrixTotale();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found with id " + panierId);
         }
     }
-
-
-
 
     @GetMapping("/commandes")
     public List<Commande> listeDesCommandes() {
@@ -131,5 +128,4 @@ public class CommandeController {
         // Set other properties as needed
         return commande;
     }
-
 }
