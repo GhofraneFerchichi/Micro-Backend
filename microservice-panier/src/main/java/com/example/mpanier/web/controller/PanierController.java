@@ -106,7 +106,6 @@ public class PanierController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found");
         }
     }
-
     @PostMapping("/add/{panierId}/{productId}")
     public ResponseEntity<FullPanierResponse> addProductToPanier(@PathVariable int panierId,
                                                                  @PathVariable int productId,
@@ -129,10 +128,12 @@ public class PanierController {
             return ResponseEntity.notFound().build();
         }
 
-        // Modify the panier as needed
+        // Set the product ID and add the product to the panier
+        product.setId(productId);
         panier.getProducts().add(product);
         panier.setQuantite(panier.getQuantite() + 1);
         panier.setPrixTotale(panier.getPrixTotale() + product.getPrix());
+
         // Save the modified panier
         Panier updatedPanier = panierDao.save(panier);
 
