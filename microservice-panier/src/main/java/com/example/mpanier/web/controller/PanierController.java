@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin(origins = "*")
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/mpanier")
 @RequiredArgsConstructor
@@ -30,27 +30,23 @@ public class PanierController {
     public ResponseEntity<Panier> ajouterPanier(@RequestParam("userId") Long userId) {
         // Retrieve the user by ID
         User user = userClient.getUserById(userId);
-        Panier panier= panierDao.save(new Panier());
-        panier.setId(1);
-        panier.setQuantite(0);
-        panier.setPrixTotale(0.0);
-
-
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
 
-        // Associate the user with the panier
+        Panier panier = new Panier();
+        panier.setQuantite(0);
+        panier.setPrixTotale(0.0);
         panier.setUser(user);
 
         // Save the panier
         Panier nouveauPanier = panierDao.save(panier);
         return new ResponseEntity<>(nouveauPanier, HttpStatus.CREATED);
     }
-    @GetMapping("/paniers/{id}")
-    public Optional<Panier> getPanierById(@PathVariable("id") int id){
-        return panierDao.findPanierByUserId(id);
 
+    @GetMapping("/paniers/{id}")
+    public Optional<Panier> getPanierById(@PathVariable("id") int id) {
+        return panierDao.findPanierByUserId(id);
     }
 
     @GetMapping("/paniers/{panierId}/products")
@@ -84,7 +80,6 @@ public class PanierController {
         return ResponseEntity.ok(productDTOs);
     }
 
-
     @GetMapping(value = "/paniers")
     public List<Panier> listeDesPaniers(@RequestParam("userId") Long userId) {
         // Retrieve the user by ID
@@ -112,47 +107,10 @@ public class PanierController {
         }
     }
 
-
-
-
-
     @PostMapping("/add/{panierId}/{productId}")
     public ResponseEntity<FullPanierResponse> addProductToPanier(@PathVariable int panierId,
                                                                  @PathVariable int productId,
                                                                  @RequestParam("userId") Long userId) {
-            // Retrieve the user by ID
-            User user = userClient.getUserById(userId);
-            if (user == null) {
-                return ResponseEntity.notFound().build();
-            }
-
-            // Retrieve the panier by ID and associated with the user
-            Optional<Panier> optionalPanier = panierDao.findByIdAndUser(panierId, user);
-            if (!optionalPanier.isPresent()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            Panier panier = optionalPanier.get();
-            Product product = productClient.recupererUnProduit(productId);
-
-            // Modify the panier as needed
-            panier.getProducts().add(product);
-            panier.setQuantite(panier.getQuantite() + 1);
-            panier.setPrixTotale(panier.getPrixTotale() + product.getPrix());
-            // Save the modified panier
-            Panier updatedPanier = panierDao.save(panier);
-
-            // Create and return the response
-            FullPanierResponse fullPanierResponse = new FullPanierResponse();
-            fullPanierResponse.setQuantite(updatedPanier.getQuantite());
-            fullPanierResponse.setPrixTotale(updatedPanier.getPrixTotale());
-            fullPanierResponse.setProducts(updatedPanier.getProducts());
-
-            return ResponseEntity.ok(fullPanierResponse);
-        }
-
-    @DeleteMapping("/remove/{panierId}/{productId}")
-    public ResponseEntity<FullPanierResponse> removeProductFromPanier(@PathVariable int panierId, @PathVariable int productId, @RequestParam("userId") Long userId) {
         // Retrieve the user by ID
         User user = userClient.getUserById(userId);
         if (user == null) {
@@ -167,6 +125,47 @@ public class PanierController {
 
         Panier panier = optionalPanier.get();
         Product product = productClient.recupererUnProduit(productId);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Modify the panier as needed
+        panier.getProducts().add(product);
+        panier.setQuantite(panier.getQuantite() + 1);
+        panier.setPrixTotale(panier.getPrixTotale() + product.getPrix());
+        // Save the modified panier
+        Panier updatedPanier = panierDao.save(panier);
+
+        // Create and return the response
+        FullPanierResponse fullPanierResponse = new FullPanierResponse();
+        fullPanierResponse.setQuantite(updatedPanier.getQuantite());
+        fullPanierResponse.setPrixTotale(updatedPanier.getPrixTotale());
+        fullPanierResponse.setProducts(updatedPanier.getProducts());
+
+        return ResponseEntity.ok(fullPanierResponse);
+    }
+
+    @DeleteMapping("/remove/{panierId}/{productId}")
+    public ResponseEntity<FullPanierResponse> removeProductFromPanier(@PathVariable int panierId,
+                                                                      @PathVariable int productId,
+                                                                      @RequestParam("userId") Long userId) {
+        // Retrieve the user by ID
+        User user = userClient.getUserById(userId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Retrieve the panier by ID and associated with the user
+        Optional<Panier> optionalPanier = panierDao.findByIdAndUser(panierId, user);
+        if (!optionalPanier.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Panier panier = optionalPanier.get();
+        Product product = productClient.recupererUnProduit(productId);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
 
         // Modify the panier as needed
         boolean removed = panier.getProducts().removeIf(p -> p.getId() == productId);
@@ -188,7 +187,10 @@ public class PanierController {
     }
 
     @PutMapping("/updateQuantity/{panierId}/{productId}")
-    public ResponseEntity<FullPanierResponse> updateProductQuantityInPanier(@PathVariable int panierId, @PathVariable int productId, @RequestParam int newQuantity, @RequestParam("userId") Long userId) {
+    public ResponseEntity<FullPanierResponse> updateProductQuantityInPanier(@PathVariable int panierId,
+                                                                            @PathVariable int productId,
+                                                                            @RequestParam int newQuantity,
+                                                                            @RequestParam("userId") Long userId) {
         // Retrieve the user by ID
         User user = userClient.getUserById(userId);
         if (user == null) {
@@ -233,32 +235,5 @@ public class PanierController {
         fullPanierResponse.setPrixTotale(updatedPanier.getPrixTotale());
         fullPanierResponse.setProducts(updatedPanier.getProducts());
         return ResponseEntity.ok(fullPanierResponse);
-    }
-    @DeleteMapping(value = "/paniers/{id}")
-    public ResponseEntity<Void> supprimerPanier(@PathVariable int id) {
-        // Check if the panier with the specified ID exists
-        if (panierDao.existsById(id)) {
-            // Delete the panier by ID
-            panierDao.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            // Return 404 Not Found if the panier with the specified ID is not found
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("/paniers/{panierId}/totalPrice")
-    public ResponseEntity<Double> getTotalPrice(@PathVariable int panierId) {
-        // Retrieve the panier by ID
-        Optional<Panier> optionalPanier = panierDao.findById(panierId);
-        if (!optionalPanier.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        // Retrieve the total price of the panier
-        double totalPrice = optionalPanier.get().getPrixTotale();
-
-        // Return the total price
-        return ResponseEntity.ok(totalPrice);
     }
 }
