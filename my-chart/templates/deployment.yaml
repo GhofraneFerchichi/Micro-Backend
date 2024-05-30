@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: mysql
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -54,6 +57,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: config-server
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -97,6 +103,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: discovery
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -143,6 +152,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gateway
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -185,36 +197,6 @@ spec:
   loadBalancerIP: 172.173.184.146
 
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: user-microservice
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: user-microservice
-  template:
-    metadata:
-      labels:
-        app: user-microservice
-    spec:
-      containers:
-        - name: user-microservice
-          image: ghofraneferchichi/user:latest
-          env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://172.173.184.146:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
-          ports:
-            - containerPort: 9010
-          resources:
-            memory: "200Mi"
-            cpu: "100m"
-            limits:
-              memory: "500Mi"
-              cpu: "200m"
-          imagePullPolicy: Always
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -234,6 +216,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mcommandes
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -290,6 +275,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mpanier
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -336,6 +324,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mproduits
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -382,6 +373,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  annotations:
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/registry: "docker.io"
 spec:
   replicas: 1
   selector:
@@ -401,10 +395,10 @@ spec:
             requests:
               memory: "200Mi"
               cpu: "100m"
-              limits:
-                memory: "500Mi"
-                cpu: "200m"
-              imagePullPolicy: Always
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
+          imagePullPolicy: Always
 
 ---
 apiVersion: v1
