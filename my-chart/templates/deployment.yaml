@@ -395,9 +395,6 @@ spec:
       containers:
         - name: frontend
           image: ghofraneferchichi/imagetree:latest
-          env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://172.173.184.146:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 80
           resources:
