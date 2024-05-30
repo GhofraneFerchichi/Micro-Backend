@@ -3,7 +3,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://51.8.66.223:8761/eureka  # Assuming the Eureka server is running on this address
+      defaultZone: http://172.173.184.146:8761/eureka  # Assuming the Eureka server is running on this address
 
 server:
   port: 9010
@@ -13,7 +13,7 @@ spring:
     name: user-microservice
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://51.8.66.71:3306/db  # Assuming MySQL is running on the IP address 10.0.156.86
+    url: jdbc:mysql://172.173.184.146:3306/db  # Assuming MySQL is running on the IP address 10.0.156.86
     username: root
     password:
   jpa:

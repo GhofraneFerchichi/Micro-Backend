@@ -1,9 +1,9 @@
 eureka:
   instance:
-    hostname: 10.0.41.57
+    hostname: 10.0.125.221
   client:
     serviceUrl:
-      defaultZone: http://51.8.66.223:8761/eureka
+      defaultZone: http://172.173.184.146:8761/eureka
 
 server:
   port: 9010
@@ -13,10 +13,10 @@ spring:
     name: user-microservice
   cloud:
     config:
-      import: optional:configserver:http://51.8.66.145:9012
+      import: optional:configserver:http://172.173.184.146:9012
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://51.8.66.71:3306/db
+    url: jdbc:mysql://172.173.184.146:3306/db
     username: root
     password:
   jpa:
@@ -41,7 +41,7 @@ authentication.internal-api-key: Internal!@
 spring.main.allow-circular-references: true
 spring.main.allow-bean-definition-overriding: true
 ## Frontend
-allowed.origins: https://localhost:4200
+allowed.origins: *
 
 spring.mail:
   host: smtp.gmail.com

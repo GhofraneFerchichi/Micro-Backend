@@ -2,4 +2,4 @@ spring:
   application:
     name: gateway
   config:
-    import: optional:configserver:http://51.8.66.145:9012
+    import: optional:configserver:http://172.173.184.146:9012

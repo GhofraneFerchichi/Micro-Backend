@@ -1,9 +1,9 @@
 eureka:
   instance:
-    hostname: 10.0.41.57
+    hostname: 172.171.181.218
   client:
     serviceUrl:
-      defaultZone: http://51.8.66.223:8761/eureka
+      defaultZone: http://172.171.181.218:8761/eureka
 
 server:
   port: 9005
@@ -12,12 +12,12 @@ spring:
   application:
     name: mpanier
   config:
-    import: optional:configserver:http://51.8.66.145:9012
-    mproduits-url: http://51.8.66.238:9004  # Define the property here
-    user-url: http://51.8.67.131:9010  # Define the user service URL here
+    import: optional:configserver:http://172.173.184.146:9012
+    mproduits-url: http://172.173.184.146:9004  # Define the property here
+    user-url: http://172.173.184.146:9010  # Define the user service URL here
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://51.8.67.131:3306/db?createDatabaseIfNotExist=true
+    url: jdbc:mysql://172.173.184.146:3306/db?createDatabaseIfNotExist=true
     username: root
     password:
   jpa:

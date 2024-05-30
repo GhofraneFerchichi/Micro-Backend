@@ -1,9 +1,9 @@
 eureka:
   instance:
-    hostname: 10.0.41.57
+    hostname: 172.171.181.218
   client:
     serviceUrl:
-      defaultZone: http://51.8.66.223:8761/eureka
+      defaultZone: http://51.8.67.177:8761/eureka # Updated Eureka defaultZone
 
 server:
   port: 9004
@@ -13,10 +13,10 @@ spring:
     name: mproduits
   config:
     import: optional:configserver:http://51.8.66.145:9012
-    user-url: http://51.8.67.131:9010 # Define the user service URL here
+    user-url: http://172.171.180.147:9010
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://51.8.66.71:3306/db
+    url: jdbc:mysql://172.171.180.232:3306/db
     username: root
     password:
   jpa:
