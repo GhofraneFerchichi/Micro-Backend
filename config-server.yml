@@ -18,7 +18,7 @@ steps:
     displayName: Build Docker image
     inputs:
       command: build
-      dockerfile: '$(Build.SourcesDirectory)/DockerfilePanier'
+      dockerfile: '$(Build.SourcesDirectory)/config-server/Dockerfile'
       tags: |
         config-server:$(tag)
 
