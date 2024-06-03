@@ -24,17 +24,21 @@ spring:
           enabled: true
       routes:
         - id: mcommandes
-          uri: lb://mcommandes  # Using service name instead of IP
+          uri: lb://commande-microservice   # Utilisation du nom du service au lieu de localhost
           predicates:
             - Path=/api/v1/mcommandes/**
-        - id: mpanier
-          uri: lb://mpanier  # Using service name instead of IP
-          predicates:
-            - Path=/api/v1/mpanier/**
         - id: mproduits
-          uri: lb://mproduits  # Using service name instead of IP
+          uri: lb://produit-microservice   # Utilisation du nom du service au lieu de localhost
           predicates:
             - Path=/api/v1/mproduits/**
+        - id: mpanier
+          uri: lb://produit-microservice   # Utilisation du nom du service au lieu de localhost
+          predicates:
+            - Path=/api/v1/mpanier/**
+        - id: user-microservice
+          uri: lb://user-microservice   # Utilisation du nom du service au lieu de localhost
+          predicates:
+            - Path=/api/authentication/**, /user/**
 
 management:
   tracing:
