@@ -1,9 +1,9 @@
 eureka:
   instance:
-    hostname: 172.171.182.83  # Updated with the mpanier external IP
+    hostname: 51.8.240.131  # Updated with the mpanier external IP
   client:
     serviceUrl:
-      defaultZone: http://51.8.67.177:8761/eureka  # Updated Eureka server IP address
+      defaultZone: http://51.8.240.64:8761/eureka  # Updated Eureka defaultZone
 
 server:
   port: 9005
@@ -12,18 +12,18 @@ spring:
   application:
     name: mpanier
   config:
-    import: optional:configserver:http://51.8.64.162:9012  # Updated Config server IP address
-    mproduits-url: http://172.171.182.34:9004  # Updated mproduits IP address
-    user-url: http://172.171.180.147:9010  # Updated user-microservice IP address
+    import: optional:configserver:http://51.8.240.21:9012  # Updated Config server IP address
+    mproduits-url: http://172.171.82.118:9004  # Define the mproduits service URL here
+    user-url: http://172.171.81.145:9010  # Define the user service URL here
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.171.180.232:3306/db?createDatabaseIfNotExist=true  # Updated MySQL server IP address
+    url: jdbc:mysql://172.171.82.162:3306/db?createDatabaseIfNotExist=true  # Updated MySQL server IP address
     username: root
     password:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
 

@@ -3,7 +3,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://51.8.67.177:8761/eureka  # Updated Eureka server IP address
+      defaultZone: http://51.8.240.64:8761/eureka  # Updated Eureka server IP address
 
 server:
   port: 9004
@@ -12,10 +12,10 @@ spring:
     name: mproduits
   cloud:
     config:
-      uri: http://51.8.64.162:9012  # Updated Config server IP address
+      uri: http://51.8.240.21:9012  # Updated Config server IP address
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.171.180.232:3306/db  # Updated MySQL server IP address
+    url: jdbc:mysql://172.171.82.162:3306/db  # Updated MySQL server IP address
     username: root
     password:
   jpa:
