@@ -213,8 +213,18 @@ spec:
         - name: user-microservice
           image: ghofraneferchichi/user:latest
           env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: SPRING_APPLICATION_NAME
+              value: user-microservice
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://51.8.240.64:8761/eureka
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
           ports:
             - containerPort: 9010
           resources:
@@ -319,8 +329,18 @@ spec:
         - name: mpanier
           image: ghofraneferchichi/pan:latest
           env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: SPRING_APPLICATION_NAME
+              value: mpanier
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://51.8.240.64:8761/eureka
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
           ports:
             - containerPort: 9005
           resources:
@@ -367,8 +387,18 @@ spec:
         - name: mproduits
           image: ghofraneferchichi/prod:latest
           env:
-            - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+            - name: SPRING_APPLICATION_NAME
+              value: mproduits
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://51.8.240.64:8761/eureka
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
           ports:
             - containerPort: 9004
           resources:
