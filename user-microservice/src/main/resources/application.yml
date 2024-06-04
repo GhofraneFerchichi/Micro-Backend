@@ -41,8 +41,7 @@ authentication.internal-api-key: Internal!@
 spring.main.allow-circular-references: true
 spring.main.allow-bean-definition-overriding: true
 
-## Frontend Configuration
-allowed.origins: *
+
 
 ## Email Configuration
 spring.mail:
