@@ -444,7 +444,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghofraneferchichi/imagetree:latest
+          image: ghofraneferchichi/imagefront:latest
           ports:
             - containerPort: 80
           resources:
