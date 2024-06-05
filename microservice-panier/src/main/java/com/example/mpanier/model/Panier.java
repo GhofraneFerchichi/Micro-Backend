@@ -25,9 +25,7 @@ public class Panier {
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(
-            name = "panier_product",
-            joinColumns = @JoinColumn(name = "panier_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
+            name = "panier_product"
     )
     private List<Product> products = new ArrayList<>();
 
