@@ -328,7 +328,7 @@ spec:
     spec:
       containers:
         - name: mpanier
-          image: ghofraneferchichi/pann:latest
+          image: ghofraneferchichi/pan:latest
           env:
             - name: SPRING_APPLICATION_NAME
               value: mpanier
