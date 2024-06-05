@@ -16,23 +16,22 @@ import java.util.List;
 public class Panier {
 
     @Id
-    private int id=1;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private Integer quantite;
-
     private Double prixTotale;
 
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST})
-    @JoinTable(
-            name = "panier_product"
-    )
+
     private List<Product> products = new ArrayList<>();
 
     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
     private User user;
+
     @OneToOne
     @JoinColumn(name = "commande_id")
     private Commande commande;

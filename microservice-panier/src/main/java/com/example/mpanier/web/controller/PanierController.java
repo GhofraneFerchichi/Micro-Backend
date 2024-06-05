@@ -123,13 +123,17 @@ public class PanierController {
         }
 
         Panier panier = optionalPanier.get();
+
+        // Retrieve the product by ID
         Product product = productClient.recupererUnProduit(productId);
         if (product == null) {
             return ResponseEntity.notFound().build();
         }
 
-        // Set the product ID and add the product to the panier
+        // Ensure the product's ID is set correctly (this might be redundant, but just to be safe)
         product.setId(productId);
+
+        // Add the product to the panier
         panier.getProducts().add(product);
         panier.setQuantite(panier.getQuantite() + 1);
         panier.setPrixTotale(panier.getPrixTotale() + product.getPrix());
@@ -145,6 +149,7 @@ public class PanierController {
 
         return ResponseEntity.ok(fullPanierResponse);
     }
+
 
     @DeleteMapping("/remove/{panierId}/{productId}")
     public ResponseEntity<FullPanierResponse> removeProductFromPanier(@PathVariable int panierId,
