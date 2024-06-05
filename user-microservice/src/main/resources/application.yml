@@ -41,6 +41,7 @@ authentication.internal-api-key: Internal!@
 spring.main.allow-circular-references: true
 spring.main.allow-bean-definition-overriding: true
 
+allowed.origins: https://localhost:4200
 
 
 ## Email Configuration
