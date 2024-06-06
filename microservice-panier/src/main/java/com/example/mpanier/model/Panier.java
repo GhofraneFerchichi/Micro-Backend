@@ -7,12 +7,15 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Panier {
 
     @Id
@@ -24,7 +27,6 @@ public class Panier {
 
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST})
-
     private List<Product> products = new ArrayList<>();
 
     @JsonIgnore

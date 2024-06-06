@@ -115,6 +115,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-hibernate5</artifactId>
+                <version>2.13.0</version>
+            </dependency>
+
 
             <!-- Removed duplicate dependency on spring-cloud-starter-config -->
 
