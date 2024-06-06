@@ -87,14 +87,18 @@ public class CommandeController {
     @GetMapping("/paniers/{panierId}/totalPrice")
     public double getTotalPriceOfPanier(@PathVariable int panierId) {
         ResponseEntity<Panier> responseEntity = panierClient.getPanierById(panierId);
-        Panier panier = responseEntity.getBody(); // Extract Panier from ResponseEntity
 
-        if (panier != null) {
-            return panier.getPrixTotale();
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found with id " + panierId);
+        if (responseEntity != null && responseEntity.getStatusCode() == HttpStatus.OK) {
+            Panier panier = responseEntity.getBody(); // Extract Panier from ResponseEntity
+
+            if (panier != null) {
+                return panier.getPrixTotale();
+            }
         }
+
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found with id " + panierId);
     }
+
 
     @GetMapping("/commandes")
     public List<Commande> listeDesCommandes() {

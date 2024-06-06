@@ -15,7 +15,7 @@ public interface PanierClient {
     ResponseEntity<Panier> getPanierById(@PathVariable("id") int id);
 
     @GetMapping("/api/v1/mpanier/paniers/{panierId}/user/{userId}")
-    Panier getPanierByIdAndUserId(@PathVariable("panierId") int panierId, @PathVariable("userId") int userId);
+            ResponseEntity<Panier> getPanierByIdAndUserId(@PathVariable("panierId") int panierId, @PathVariable("userId") int userId);
 
     @DeleteMapping(value = "/api/v1/mpanier/paniers/{id}")
     ResponseEntity<Void> supprimerPanier(@PathVariable int id);
