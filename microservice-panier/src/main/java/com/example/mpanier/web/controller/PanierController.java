@@ -45,9 +45,16 @@ public class PanierController {
     }
 
     @GetMapping("/paniers/{id}")
-    public Optional<Panier> getPanierById(@PathVariable("id") int id) {
-        return panierDao.findPanierByUserId(id);
+    public ResponseEntity<Panier> getPanierById(@PathVariable("id") int id) {
+        Panier panier = panierDao.getById(1); // Hardcoded for debugging
+        if (panier != null) {
+            return ResponseEntity.ok(panier);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
+
 
     @GetMapping("/paniers/{panierId}/products")
     public ResponseEntity<List<ProductDTO>> getCartProducts(@PathVariable int panierId) {

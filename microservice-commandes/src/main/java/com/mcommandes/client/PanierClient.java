@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 public interface PanierClient {
     @GetMapping("/api/v1/mpanier/paniers/{id}")
-    Panier getPanierById(@PathVariable("id") int id);
+    ResponseEntity<Panier> getPanierById(@PathVariable("id") int id);
 
     @GetMapping("/api/v1/mpanier/paniers/{panierId}/user/{userId}")
     Panier getPanierByIdAndUserId(@PathVariable("panierId") int panierId, @PathVariable("userId") int userId);

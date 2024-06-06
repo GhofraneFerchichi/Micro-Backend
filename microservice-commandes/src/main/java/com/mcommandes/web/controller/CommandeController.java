@@ -35,7 +35,7 @@ public class CommandeController {
     @PostMapping("/validercommande/{id}")
     public ResponseEntity<Commande> validerCommande(@PathVariable int id, @RequestParam("userId") Long userId) {
         // Retrieve panier and user
-        Panier panier = panierClient.getPanierById(id);
+        Panier panier = panierClient.getPanierById(id).getBody();
         com.mcommandes.model.User user = userClient.getUserById(userId);
         if (panier == null || user == null) {
             return ResponseEntity.notFound().build();
@@ -86,7 +86,9 @@ public class CommandeController {
 
     @GetMapping("/paniers/{panierId}/totalPrice")
     public double getTotalPriceOfPanier(@PathVariable int panierId) {
-        Panier panier = panierClient.getPanierById(panierId);
+        ResponseEntity<Panier> responseEntity = panierClient.getPanierById(panierId);
+        Panier panier = responseEntity.getBody(); // Extract Panier from ResponseEntity
+
         if (panier != null) {
             return panier.getPrixTotale();
         } else {
