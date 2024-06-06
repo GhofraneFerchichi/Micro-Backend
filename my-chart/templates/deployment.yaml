@@ -270,7 +270,7 @@ spec:
     spec:
       containers:
         - name: mcommandes
-          image: ghofraneferchichi/microcommba:latest
+          image: ghofraneferchichi/microcommm:latest
           env:
             - name: SPRING_APPLICATION_NAME
               value: mcommandes
@@ -328,7 +328,7 @@ spec:
     spec:
       containers:
         - name: mpanier
-          image: ghofraneferchichi/micropanierb:latest
+          image: ghofraneferchichi/micropann:latest
           env:
             - name: SPRING_APPLICATION_NAME
               value: mpanier
