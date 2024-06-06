@@ -35,7 +35,7 @@ public class CommandeController {
     @PostMapping("/validercommande/{id}")
     public ResponseEntity<Commande> validerCommande(@PathVariable int id, @RequestParam("userId") Long userId) {
         // Retrieve panier and user
-        Panier panier = panierClient.getPanierById(id).getBody();
+        Panier panier = panierClient.getPanierById(id);
         com.mcommandes.model.User user = userClient.getUserById(userId);
         if (panier == null || user == null) {
             return ResponseEntity.notFound().build();
@@ -86,17 +86,8 @@ public class CommandeController {
 
     @GetMapping("/paniers/{panierId}/totalPrice")
     public double getTotalPriceOfPanier(@PathVariable int panierId) {
-        ResponseEntity<Panier> responseEntity = panierClient.getPanierById(panierId);
-
-        if (responseEntity != null && responseEntity.getStatusCode() == HttpStatus.OK) {
-            Panier panier = responseEntity.getBody(); // Extract Panier from ResponseEntity
-
-            if (panier != null) {
-                return panier.getPrixTotale();
-            }
-        }
-
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Panier not found with id " + panierId);
+        Panier panier = panierClient.getPanierById(panierId);
+        return panier.getPrixTotale();
     }
 
 
