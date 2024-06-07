@@ -19,14 +19,13 @@ import javax.persistence.*;
 public class Panier {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private Integer quantite;
     private Double prixTotale;
 
     @JsonIgnore
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany
     private List<Product> products = new ArrayList<>();
 
     @JsonIgnore

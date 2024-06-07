@@ -35,6 +35,7 @@ public class PanierController {
         }
 
         Panier panier = new Panier();
+        panier.setId(1); // Set ID to 1
         panier.setQuantite(0);
         panier.setPrixTotale(0.0);
         panier.setUser(user);
