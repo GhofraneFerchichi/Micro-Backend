@@ -27,5 +27,5 @@ steps:
     inputs:
       command: push
       containerRegistry: '$(dockerRegistryServiceConnection)'
-      repository: 'ghofraneferchichi/user'  # Update repository to the correct format
+      repository: 'ghofraneferchichi/microuserr'  # Update repository to the correct format
       tags: 'latest'

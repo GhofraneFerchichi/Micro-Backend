@@ -27,5 +27,5 @@ steps:
     inputs:
       command: push
       containerRegistry: '$(dockerRegistryServiceConnection)'
-      repository: 'ghofraneferchichi/pan'  # Update repository to the correct format
+      repository: 'ghofraneferchichi/micropannc'  # Update repository to the correct format
       tags: 'latest'

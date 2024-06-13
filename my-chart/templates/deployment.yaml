@@ -29,6 +29,13 @@ spec:
               mountPath: /var/lib/mysql
             - name: initdb
               mountPath: /docker-entrypoint-initdb.d
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
@@ -36,7 +43,6 @@ spec:
         - name: initdb
           configMap:
             name: mysql-initdb
-
 ---
 apiVersion: v1
 kind: Service
@@ -51,6 +57,7 @@ spec:
       targetPort: 3306
   type: LoadBalancer
   loadBalancerIP: 172.171.82.162
+
 ---
 apiVersion: apps/v1
 kind: Deployment

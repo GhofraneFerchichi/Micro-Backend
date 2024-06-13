@@ -27,5 +27,5 @@ steps:
     inputs:
       command: push
       containerRegistry: '$(dockerRegistryServiceConnection)'
-      repository: 'ghofraneferchichi/config'  # Update repository to the correct format
+      repository: 'ghofraneferchichi/configserv'  # Update repository to the correct format
       tags: 'latest'
