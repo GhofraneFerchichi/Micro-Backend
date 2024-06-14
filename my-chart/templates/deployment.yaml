@@ -111,8 +111,8 @@ kind: Deployment
 metadata:
   name: discovery
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/discback"
 spec:
   replicas: 1
   selector:
@@ -159,8 +159,8 @@ kind: Deployment
 metadata:
   name: gateway
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/gatewayback"
 spec:
   replicas: 1
   selector:
@@ -187,6 +187,7 @@ spec:
               memory: "500Mi"
               cpu: "200m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
@@ -207,8 +208,8 @@ kind: Deployment
 metadata:
   name: user-microservice
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/microuserr"
 spec:
   replicas: 1
   selector:
@@ -245,6 +246,7 @@ spec:
               memory: "500Mi"
               cpu: "200m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
@@ -265,8 +267,8 @@ kind: Deployment
 metadata:
   name: mcommandes
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/microcommm"
 spec:
   replicas: 1
   selector:
@@ -303,6 +305,7 @@ spec:
               memory: "500Mi"
               cpu: "200m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
@@ -323,8 +326,8 @@ kind: Deployment
 metadata:
   name: mpanier
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/micropannc"
 spec:
   replicas: 1
   selector:
@@ -361,6 +364,7 @@ spec:
               memory: "500Mi"
               cpu: "200m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
@@ -381,8 +385,8 @@ kind: Deployment
 metadata:
   name: mproduits
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/prodback"
 spec:
   replicas: 1
   selector:
@@ -419,6 +423,7 @@ spec:
               memory: "600Mi"
               cpu: "300m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
@@ -439,8 +444,8 @@ kind: Deployment
 metadata:
   name: frontend
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/lastimage"
 spec:
   replicas: 1
   selector:
@@ -464,6 +469,7 @@ spec:
               memory: "500Mi"
               cpu: "200m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
