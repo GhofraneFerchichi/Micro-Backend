@@ -4,8 +4,8 @@ metadata:
   name: mysql
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "mysql"
 spec:
   replicas: 1
   selector:
@@ -43,6 +43,7 @@ spec:
         - name: initdb
           configMap:
             name: mysql-initdb
+
 ---
 apiVersion: v1
 kind: Service
@@ -64,8 +65,8 @@ kind: Deployment
 metadata:
   name: config-server
   annotations:
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/registry: "docker.io"
+    argocd-image-updater.argoproj.io/allow-tags: "*"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/configserv"
 spec:
   replicas: 1
   selector:
@@ -89,6 +90,7 @@ spec:
               memory: "500Mi"
               cpu: "200m"
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
