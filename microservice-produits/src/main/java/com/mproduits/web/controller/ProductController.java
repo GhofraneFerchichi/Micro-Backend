@@ -82,27 +82,7 @@ public class ProductController {
 
 
     // Get all Products
-    @GetMapping(value = "/produits")
-    public List<ProductDTO> listeDesProduits() {
-        List<Product> products = productDao.findAll();
-        List<ProductDTO> productDTOs = new ArrayList<>();
 
-        // Convert products to DTOs
-        for (Product product : products) {
-            ProductDTO dto = new ProductDTO();
-            dto.setId(product.getId());
-            dto.setTitre(product.getTitre());
-            dto.setDescription(product.getDescription());
-            dto.setPrix(product.getPrix());
-
-            // Convert image byte array to Base64-encoded string
-            dto.setImageBase64(Base64.getEncoder().encodeToString(product.getImage()));
-
-            productDTOs.add(dto);
-        }
-
-        return productDTOs;
-    }
 
     // Get a Product by its ID
 
@@ -158,5 +138,25 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping(value = "/produits")
+    public List<ProductDTO> listeDesProduits() {
+        List<Product> products = productDao.findAll();
+        List<ProductDTO> productDTOs = new ArrayList<>();
 
+        // Convert products to DTOs
+        for (Product product : products) {
+            ProductDTO dto = new ProductDTO();
+            dto.setId(product.getId());
+            dto.setTitre(product.getTitre());
+            dto.setDescription(product.getDescription());
+            dto.setPrix(product.getPrix());
+
+            // Convert image byte array to Base64-encoded string
+            dto.setImageBase64(Base64.getEncoder().encodeToString(product.getImage()));
+
+            productDTOs.add(dto);
+        }
+
+        return productDTOs;
+    }
 }
