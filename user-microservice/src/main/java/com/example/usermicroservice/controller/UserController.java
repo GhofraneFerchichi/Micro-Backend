@@ -36,11 +36,7 @@ public class UserController {
         System.out.println(a);
         return siteURL.replace(request.getServletPath(), "");
     }
-    @GetMapping("/getUsers")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
-    }
+
 
     @PutMapping("/update")
     public ResponseEntity<User> UpdateUser(@RequestBody User user) throws Exception {
@@ -95,6 +91,10 @@ public class UserController {
 
         return currentUser;
     }
-
+    @GetMapping("/getUsers")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.findAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 
 }
