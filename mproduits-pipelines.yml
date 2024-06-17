@@ -37,7 +37,7 @@ steps:
         $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
-        $content = $content -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi\/prodback:$(Build.BuildId)"
+        $content = $content -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi/prodback:$(Build.BuildId)"
         $content | Set-Content $yamlPath
 
   - task: PowerShell@2
