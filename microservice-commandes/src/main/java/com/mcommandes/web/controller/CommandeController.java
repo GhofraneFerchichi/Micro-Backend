@@ -84,6 +84,14 @@ public class CommandeController {
     }
 
 
+
+
+    @GetMapping("/paniers/{panierId}/totalPrice")
+    public double getTotalPriceOfPanier(@PathVariable int panierId) {
+        Panier panier = panierClient.getPanierById(panierId);
+        return panier.getPrixTotale();
+    }
+
     public Commande createCommandeFromPanier(Panier panier, User user) {
         Commande commande = new Commande();
         commande.setProducts(panier.getProducts());
@@ -95,13 +103,6 @@ public class CommandeController {
         // Set other properties as needed
         return commande;
     }
-
-    @GetMapping("/paniers/{panierId}/totalPrice")
-    public double getTotalPriceOfPanier(@PathVariable int panierId) {
-        Panier panier = panierClient.getPanierById(panierId);
-        return panier.getPrixTotale();
-    }
-
 
     @GetMapping("/commandes")
     public List<Commande> listeDesCommandes() {
