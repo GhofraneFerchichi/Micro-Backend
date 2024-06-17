@@ -13,6 +13,7 @@ steps:
     displayName: Build Docker image
     inputs:
       command: build
+      containerRegistry: 'DockerHubConnection'
       dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
       tags: |
         ghofraneferchichi/prodback:$(Build.BuildId)
