@@ -23,16 +23,19 @@ steps:
       repository: '$(imageRepository)'
       tags: $(tag)
 
-  - script: |
-      Write-Host "Updating Deployment YAML file for microservice-produits with new image tag"
-      $yamlPath = "$(Build.SourcesDirectory)/microservice-produits/deployment.yaml"
-      $content = Get-Content $yamlPath -Raw
-      $content = $content -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi\/prodback:$(Build.BuildId)"
-      $content | Set-Content $yamlPath
-    displayName: 'Update Deployment YAML for microservice-produits'
+  - task: PowerShell@2
+    displayName: Update Deployment YAML for microservice-produits
+    inputs:
+      targetType: 'inline'
+      script: |
+        Write-Host "Updating Deployment YAML file for microservice-produits with new image tag"
+        $yamlPath = "$(Build.SourcesDirectory)/microservice-produits/deployment.yaml"
+        $content = Get-Content $yamlPath -Raw
+        $content = $content -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi\/prodback:$(Build.BuildId)"
+        $content | Set-Content $yamlPath
 
   - script: |
-      git config --global user.email "ghofranefer01@gmail.com"
+      git config --global user.email "ghofrane.fer01@gmail.com"
       git config --global user.name "GhofraneFerchichi"
       cd $(Build.SourcesDirectory)/microservice-produits
       git checkout master  # Ensure you are on the correct branch
