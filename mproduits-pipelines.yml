@@ -8,6 +8,11 @@ pool:
   demands:
     - agent.name -equals DESKTOP-47P7H1A
 
+variables:
+  dockerRegistryServiceConnection: 'DockerHubConnection'
+  imageRepository: 'ghofraneferchichi/prodback'
+  tag: '$(Build.BuildId)'
+
 steps:
   - task: Docker@2
     displayName: Build Docker image
@@ -15,18 +20,31 @@ steps:
       command: build
       dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
       tags: |
-        ghofraneferchichi/prodback:$(Build.BuildId)
-
-  - script: |
-      echo "Updating Deployment YAML file for microservice-produits with new image tag"
-      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(Build.BuildId)/' $(Build.SourcesDirectory)/microservice-produits/deployment.yaml
-    displayName: Update Deployment YAML for microservice-produits
+        $(imageRepository):$(tag)
 
   - task: Docker@2
     displayName: Push image to Docker Hub
     inputs:
       command: push
-      containerRegistry: 'DockerHubConnection'
-      repository: 'ghofraneferchichi/prodback'
-      tags: $(Build.BuildId)
+      containerRegistry: '$(dockerRegistryServiceConnection)'
+      repository: '$(imageRepository)'
+      tags: $(tag)
 
+  - script: |
+      Write-Host "Updating Deployment YAML file for microservice-produits with new image tag"
+      $yamlPath = "$(Build.SourcesDirectory)/microservice-produits/deployment.yaml"
+      $content = Get-Content $yamlPath -Raw
+      $content = $content -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi\/prodback:$(Build.BuildId)"
+      $content | Set-Content $yamlPath
+    displayName: 'Update Deployment YAML for microservice-produits'
+
+  - script: |
+      git config --global user.email "ghofrane.ferchichi@esprit.tn"
+      git config --global user.name "GhofraneFerchichu"
+      cd $(Build.SourcesDirectory)/microservice-produits
+      git checkout master  # Ensure you are on the correct branch
+      git pull origin master  # Pull latest changes
+      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(Build.BuildId)/' deployment.yaml
+      git commit -am "Update Docker image tag to $(Build.BuildId) in deployment YAML file"
+      git push origin master  # Push changes back to the repository
+    displayName: 'Commit and push updated Deployment YAML files'
