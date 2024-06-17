@@ -4,7 +4,7 @@ trigger:
       - master  # Replace with your main branch name
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Default
   demands:
     - agent.name -equals DESKTOP-47P7H1A
 
