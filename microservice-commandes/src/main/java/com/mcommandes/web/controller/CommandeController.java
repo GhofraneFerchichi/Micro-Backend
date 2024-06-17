@@ -120,6 +120,7 @@ public class CommandeController {
         commande.setProducts(panier.getProducts());
         commande.setDateCommande(new Date());
         commande.setQuantite(panier.getQuantite());
+        commande.setPrixTotale(panier.getPrixTotale());
         // Set the user for the Commande
         commande.setUser(user); // Assuming there's a setUser method in your Commande entity that accepts a User object
         // Set other properties as needed
