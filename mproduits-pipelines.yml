@@ -5,6 +5,13 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+  demands:
+    - agent.name -equals DESKTOP-47P7H1A
+
+resources:
+  repositories:
+    - repository: self
+      ref: master  # Replace with your main branch name
 
 variables:
   dockerRegistryServiceConnection: 'DockerHubConnection'
