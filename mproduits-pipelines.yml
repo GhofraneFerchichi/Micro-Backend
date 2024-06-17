@@ -51,7 +51,7 @@ steps:
         git checkout master  # Ensure you are on the correct branch
         git pull origin master  # Pull latest changes
         # Use PowerShell to replace the image tag in the deployment.yaml file
-        (Get-Content deployment.yaml) -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi\/prodback:$(Build.BuildId)" | Set-Content deployment.yaml
+        (Get-Content deployment.yaml) -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi/prodback:$(Build.BuildId)" | Set-Content deployment.yaml
         git add deployment.yaml
         git commit -m "Update Docker image tag to $(Build.BuildId) in deployment YAML file"
         git push origin master  # Push changes back to the repository
