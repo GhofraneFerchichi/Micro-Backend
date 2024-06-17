@@ -34,7 +34,7 @@ steps:
       targetType: 'inline'
       script: |
         Write-Host "Updating Deployment YAML file for gateway with new image tag"
-        $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/gateway-deployment.yaml"
+        $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
         $content = $content -replace 'image: ghofraneferchichi/gatewayback:.+', "image: ghofraneferchichi/gatewayback:$(Build.BuildId)"
@@ -51,7 +51,7 @@ steps:
         git checkout master  # Ensure you are on the correct branch
         git pull origin master  # Pull latest changes
         # Use PowerShell to replace the image tag in the deployment.yaml file
-        (Get-Content gateway-deployment.yaml) -replace 'image: ghofraneferchichi/gatewayback:.+', "image: ghofraneferchichi/gatewayback:$(Build.BuildId)" | Set-Content gateway-deployment.yaml
-        git add gateway-deployment.yaml
+        (Get-Content deployment.yaml) -replace 'image: ghofraneferchichi/gatewayback:.+', "image: ghofraneferchichi/gatewayback:$(Build.BuildId)" | Set-Content deployment.yaml
+        git add deployment.yaml
         git commit -m "Update Docker image tag to $(Build.BuildId) in gateway deployment YAML file"
         git push origin master  # Push changes back to the repository
