@@ -3,65 +3,30 @@ trigger:
     include:
       - master
 
-resources:
-  - repo: self
-
-variables:
-  dockerRegistryServiceConnection: 'DockerHubConnection'  # Update with your DockerHub service connection
-  imageRepository: 'ghofraneferchichi/prodback'
-  tag: '$(Build.BuildId)'
-
 pool:
   name: Default
   demands:
     - agent.name -equals DESKTOP-47P7H1A
 
-stages:
-  - stage: Build
-    displayName: Build
-    jobs:
-      - job: Build
-        displayName: Build
-        steps:
-          - task: Docker@2
-            displayName: Build the Docker image
-            inputs:
-              command: 'build'
-              dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
-              tags: |
-                ghofraneferchichi/prodback:$(tag)
+steps:
+  - task: Docker@2
+    displayName: Build Docker image
+    inputs:
+      command: build
+      dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
+      tags: |
+        ghofraneferchichi/prodback:$(Build.BuildId)
 
-  - stage: Push
-    displayName: Push
-    jobs:
-      - job: Push
-        displayName: Push
-        steps:
-          - task: Docker@2
-            displayName: Push the Docker image
-            inputs:
-              command: 'push'
-              containerRegistry: '$(dockerRegistryServiceConnection)'
-              repository: '$(imageRepository)'
-              tags: $(tag)
+  - script: |
+      echo "Updating Deployment YAML file for microservice-produits with new image tag"
+      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(Build.BuildId)/' $(Build.SourcesDirectory)/microservice-produits/deployment.yaml
+    displayName: Update Deployment YAML for microservice-produits
 
-  - stage: Update
-    displayName: Update
-    jobs:
-      - job: Update
-        displayName: Update
-        steps:
-          - script: |
-              echo "Updating Deployment YAML file for microservice-produits with new image tag"
-              sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(tag)/' $(Build.SourcesDirectory)/microservice-produits/deployment.yaml
-            displayName: Update Deployment YAML for microservice-produits
+  - task: Docker@2
+    displayName: Push image to Docker Hub
+    inputs:
+      command: push
+      containerRegistry: 'DockerHubConnection'
+      repository: 'ghofraneferchichi/prodback'
+      tags: $(Build.BuildId)
 
-          - script: |
-              git config --global user.email "ghofrane.ferchichi@esprit.tn"
-              git config --global user.name "GhofraneFerchichi"
-              cd $(Build.SourcesDirectory)
-              git checkout -b update-image-tag
-              git add microservice-produits/deployment.yaml
-              git commit -m "Update Docker image tag to $(tag) in deployment YAML files"
-              git push origin update-image-tag
-            displayName: Commit and push updated Deployment YAML files
