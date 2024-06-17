@@ -31,31 +31,17 @@ steps:
       repository: '$(imageRepository)'
       tags: $(tag)
 
-  # Update deployment YAML files for each microservice
   - script: |
-      # Update deployment YAML file for microservice-produits
-      echo "Updating Deployment YAML file for microservice-produits with new image tag"
-      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(tag)/' $(Build.SourcesDirectory)/microservice-produits/deployment.yaml
-    displayName: Update Deployment YAML for microservice-produits
-
-  # Additional steps to update deployment YAML files for other microservices
-
-  - script: |
+      echo "Updating Helm chart with new image tag"
+      sed -i 's/tag: .*/tag: $(tag)/' $(Build.SourcesDirectory)/my-chart/values.yaml
+      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(tag)/' $(Build.SourcesDirectory)/my-chart/templates/deployment.yaml
+      cd $(Build.SourcesDirectory)/my-chart
       git config --global user.email "ghofrane.ferchichi@esprit.tn"
-      git config --global user.name "GhofraneFerchichu"
-      cd $(Build.SourcesDirectory)
-      git checkout -b update-image-tag
-      git add microservice-produits/deployment.yaml  # Add paths for other microservices if needed
-      git commit -m "Update Docker image tag to $(tag) in deployment YAML files"
-      git push origin update-image-tag
-    displayName: Commit and push updated Deployment YAML files
+      git config --global user.name "GhofraneFerchichi"
+      git add values.yaml templates/deployment.yaml
+      git commit -m "Automated update: Image tag to $(tag)"
+      git push origin HEAD:master
+    displayName: Commit and push updated Helm chart
 
-  # Optional: Azure CLI task to create a pull request
-  # - task: AzureCLI@2
-  #   displayName: Create Pull Request
-  #   inputs:
-  #     azureSubscription: 'your-azure-subscription'
-  #     scriptType: bash
-  #     scriptLocation: inlineScript
-  #     inlineScript: |
-  #       az repos pr create --repository "Micro-Backend" --source-branch "update-image-tag" --target-branch "master" --title "Update image tag to $(tag)" --description "This PR updates the image tag in the Helm chart to $(tag)." --auto-complete
+# Optional: You can add additional steps here for testing purposes or other automation tasks.
+# For deployment through Argo CD, no additional deployment steps are needed here.
