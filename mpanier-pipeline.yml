@@ -1,31 +1,57 @@
 trigger:
-  - master
+  branches:
+    include:
+      - master
 
 pool:
   name: Default
   demands:
     - agent.name -equals DESKTOP-47P7H1A
 
-resources:
-  - repo: self
-
 variables:
-  tag: 'latest'
   dockerRegistryServiceConnection: 'DockerHubConnection'
+  imageRepository: 'ghofraneferchichi/micropannc'
+  tag: '$(Build.BuildId)'
 
 steps:
   - task: Docker@2
-    displayName: Build Docker image
+    displayName: Build and Push Docker image
     inputs:
-      command: build
+      command: buildAndPush
       dockerfile: '$(Build.SourcesDirectory)/DockerfilePanier'
-      tags: |
-        config-server:$(tag)
-
-  - task: Docker@2
-    displayName: Push image to Docker Hub
-    inputs:
-      command: push
       containerRegistry: '$(dockerRegistryServiceConnection)'
-      repository: 'ghofraneferchichi/micropannc'  # Update repository to the correct format
-      tags: 'latest'
+      repository: '$(imageRepository)'
+      tags: $(tag)
+
+  - script: |
+      echo "Listing contents of $(Build.SourcesDirectory)/my-chart/templates"
+      dir "$(Build.SourcesDirectory)/my-chart/templates"
+    displayName: 'List Directory Contents'
+
+  - task: PowerShell@2
+    displayName: Update Deployment YAML for panier
+    inputs:
+      targetType: 'inline'
+      script: |
+        Write-Host "Updating Deployment YAML file for panier with new image tag"
+        $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/panier-deployment.yaml"
+        Write-Host "YAML Path: $yamlPath"
+        $content = Get-Content $yamlPath -Raw
+        $content = $content -replace 'image: ghofraneferchichi/micropannc:.+', "image: ghofraneferchichi/micropannc:$(Build.BuildId)"
+        $content | Set-Content $yamlPath
+
+  - task: PowerShell@2
+    displayName: Commit and push updated Deployment YAML files
+    inputs:
+      targetType: 'inline'
+      script: |
+        git config --global user.email "ghofranefer01@gmail.com"
+        git config --global user.name "GhofraneFerchichi"
+        cd "$(Build.SourcesDirectory)/my-chart/templates"
+        git checkout master  # Ensure you are on the correct branch
+        git pull origin master  # Pull latest changes
+        # Use PowerShell to replace the image tag in the deployment.yaml file
+        (Get-Content panier-deployment.yaml) -replace 'image: ghofraneferchichi/micropannc:.+', "image: ghofraneferchichi/micropannc:$(Build.BuildId)" | Set-Content panier-deployment.yaml
+        git add panier-deployment.yaml
+        git commit -m "Update Docker image tag to $(Build.BuildId) in panier deployment YAML file"
+        git push origin master  # Push changes back to the repository
