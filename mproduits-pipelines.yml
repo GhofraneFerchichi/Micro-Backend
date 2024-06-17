@@ -23,21 +23,27 @@ steps:
       repository: '$(imageRepository)'
       tags: $(tag)
 
+  - script: |
+      echo "Listing contents of $(Build.SourcesDirectory)/my-chart/templates"
+      dir "$(Build.SourcesDirectory)/my-chart/templates"
+    displayName: 'List Directory Contents'
+
   - task: PowerShell@2
     displayName: Update Deployment YAML for microservice-produits
     inputs:
       targetType: 'inline'
       script: |
         Write-Host "Updating Deployment YAML file for microservice-produits with new image tag"
-        $yamlPath = "$(Build.SourcesDirectory)/microservice-produits/deployment.yaml"
+        $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
+        Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
         $content = $content -replace 'image: ghofraneferchichi\/prodback:.+', "image: ghofraneferchichi\/prodback:$(Build.BuildId)"
         $content | Set-Content $yamlPath
 
   - script: |
-      git config --global user.email "ghofrane.fer01@gmail.com"
+      git config --global user.email "ghofranefer01@gmail.com"
       git config --global user.name "GhofraneFerchichi"
-      cd $(Build.SourcesDirectory)/microservice-produits
+      cd $(Build.SourcesDirectory)/my-chart/templates
       git checkout master  # Ensure you are on the correct branch
       git pull origin master  # Pull latest changes
       sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(Build.BuildId)/' deployment.yaml
