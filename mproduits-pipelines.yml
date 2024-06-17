@@ -10,8 +10,9 @@ resources:
   - repo: self
 
 variables:
-  tag: 'latest'
   dockerRegistryServiceConnection: 'DockerHubConnection'
+  imageRepository: 'ghofraneferchichi/prodback'
+  tag: '$(Build.BuildId)'  # Use the build ID as the tag
 
 steps:
   - task: Docker@2
@@ -20,12 +21,27 @@ steps:
       command: build
       dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
       tags: |
-        config-server:$(tag)
+        $(imageRepository):$(tag)
 
   - task: Docker@2
     displayName: Push image to Docker Hub
     inputs:
       command: push
       containerRegistry: '$(dockerRegistryServiceConnection)'
-      repository: 'ghofraneferchichi/prodback'  # Update repository to the correct format
-      tags: 'latest'
+      repository: '$(imageRepository)'
+      tags: $(tag)
+
+  - script: |
+      echo "Updating Helm chart with new image tag"
+      sed -i 's/tag: .*/tag: $(tag)/' $(Build.SourcesDirectory)/my-chart/values.yaml
+      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(tag)/' $(Build.SourcesDirectory)/my-chart/templates/deployment.yaml
+      cd $(Build.SourcesDirectory)/my-chart
+      git config --global user.email "ghofrane.ferchichi@esprit.tn"
+      git config --global user.name "GhofraneFerchichi"
+      git add values.yaml templates/deployment.yaml
+      git commit -m "Automated update: Image tag to $(tag)"
+      git push origin HEAD:master
+    displayName: Commit and push updated Helm chart
+
+# Optional: You can add additional steps here for testing purposes or other automation tasks.
+# For deployment through Argo CD, no additional deployment steps are needed here.
