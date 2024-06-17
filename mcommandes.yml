@@ -33,7 +33,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        Write-Host "Updating Deployment YAML file for commandes with new image tag"
+        Write-Host "Updating Deployment YAML file with new image tag"
         $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
@@ -50,8 +50,6 @@ steps:
         cd "$(Build.SourcesDirectory)/my-chart/templates"
         git checkout master  # Ensure you are on the correct branch
         git pull origin master  # Pull latest changes
-        # Use PowerShell to replace the image tag in the deployment.yaml file
-        (Get-Content commandes-deployment.yaml) -replace 'image: ghofraneferchichi/microcommm:.+', "image: ghofraneferchichi/microcommm:$(Build.BuildId)" | Set-Content deployment.yaml
         git add deployment.yaml
-        git commit -m "Update Docker image tag to $(Build.BuildId) in commandes deployment YAML file"
+        git commit -m "Update Docker image tag to $(Build.BuildId) in deployment YAML file"
         git push origin master  # Push changes back to the repository
