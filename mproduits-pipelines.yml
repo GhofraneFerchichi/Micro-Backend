@@ -1,22 +1,12 @@
 trigger:
   branches:
     include:
-      - master  # Replace with your main branch name
+      - master
 
 pool:
   name: Default
   demands:
     - agent.name -equals DESKTOP-47P7H1A
-
-resources:
-  repositories:
-    - repository: self
-      ref: master  # Replace with your main branch name
-
-variables:
-  dockerRegistryServiceConnection: 'DockerHubConnection'
-  imageRepository: 'ghofraneferchichi/prodback'
-  tag: '$(Build.BuildId)'  # Use the build ID as the tag
 
 steps:
   - task: Docker@2
@@ -25,42 +15,27 @@ steps:
       command: build
       dockerfile: '$(Build.SourcesDirectory)/microservice-produits/Dockerfile'
       tags: |
-        $(imageRepository):$(tag)
+        ghofraneferchichi/prodback:$(Build.BuildId)
 
   - task: Docker@2
     displayName: Push image to Docker Hub
     inputs:
       command: push
-      containerRegistry: '$(dockerRegistryServiceConnection)'
-      repository: '$(imageRepository)'
-      tags: $(tag)
+      containerRegistry: 'DockerHubConnection'
+      repository: 'ghofraneferchichi/prodback'
+      tags: $(Build.BuildId)
 
-  # Update deployment YAML files for each microservice
   - script: |
-      # Update deployment YAML file for microservice-produits
       echo "Updating Deployment YAML file for microservice-produits with new image tag"
-      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(tag)/' $(Build.SourcesDirectory)/microservice-produits/deployment.yaml
+      sed -i 's/image: ghofraneferchichi\/prodback:.*/image: ghofraneferchichi\/prodback:$(Build.BuildId)/' $(Build.SourcesDirectory)/microservice-produits/deployment.yaml
     displayName: Update Deployment YAML for microservice-produits
-
-  # Additional steps to update deployment YAML files for other microservices
-  # Add similar scripts for other microservices if needed
 
   - script: |
       git config --global user.email "ghofrane.ferchichi@esprit.tn"
-      git config --global user.name "GhofraneFerchichu"
+      git config --global user.name "GhofraneFerchichi"
       cd $(Build.SourcesDirectory)
       git checkout -b update-image-tag
-      git add microservice-produits/deployment.yaml  # Add paths for other microservices if needed
-      git commit -m "Update Docker image tag to $(tag) in deployment YAML files"
+      git add microservice-produits/deployment.yaml
+      git commit -m "Update Docker image tag to $(Build.BuildId) in deployment YAML files"
       git push origin update-image-tag
     displayName: Commit and push updated Deployment YAML files
-
-# Optional: Azure CLI task to create a pull request
-# - task: AzureCLI@2
-#   displayName: Create Pull Request
-#   inputs:
-#     azureSubscription: 'your-azure-subscription'
-#     scriptType: bash
-#     scriptLocation: inlineScript
-#     inlineScript: |
-#       az repos pr create --repository "Micro-Backend" --source-branch "update-image-tag" --target-branch "master" --title "Update image tag to $(tag)" --description "This PR updates the image tag in the Helm chart to $(tag)." --auto-complete
