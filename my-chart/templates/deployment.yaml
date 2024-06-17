@@ -281,7 +281,7 @@ spec:
     spec:
       containers:
         - name: mcommandes
-          image: ghofraneferchichi/microcommm:latest
+          image: ghofraneferchichi/microcommm:185
           env:
             - name: SPRING_APPLICATION_NAME
               value: mcommandes
@@ -484,6 +484,7 @@ spec:
       targetPort: 80
   type: LoadBalancer
   loadBalancerIP: 51.8.240.51
+
 
 
 
