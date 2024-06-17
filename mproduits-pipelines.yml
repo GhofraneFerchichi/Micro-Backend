@@ -39,8 +39,8 @@ steps:
     displayName: 'Update Deployment YAML for microservice-produits'
 
   - script: |
-      git config --global user.email "ghofrane.ferchichi@esprit.tn"
-      git config --global user.name "GhofraneFerchichu"
+      git config --global user.email "ghofranefer01@gmail.com"
+      git config --global user.name "GhofraneFerchichi"
       cd $(Build.SourcesDirectory)/microservice-produits
       git checkout master  # Ensure you are on the correct branch
       git pull origin master  # Pull latest changes
