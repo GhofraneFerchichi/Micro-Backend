@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -84,6 +83,19 @@ public class CommandeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCommande);
     }
 
+
+    public Commande createCommandeFromPanier(Panier panier, User user) {
+        Commande commande = new Commande();
+        commande.setProducts(panier.getProducts());
+        commande.setDateCommande(new Date());
+        commande.setQuantite(panier.getQuantite());
+        commande.setPrixTotale(panier.getPrixTotale());
+        // Set the user for the Commande
+        commande.setUser(user); // Assuming there's a setUser method in your Commande entity that accepts a User object
+        // Set other properties as needed
+        return commande;
+    }
+
     @GetMapping("/paniers/{panierId}/totalPrice")
     public double getTotalPriceOfPanier(@PathVariable int panierId) {
         Panier panier = panierClient.getPanierById(panierId);
@@ -115,15 +127,5 @@ public class CommandeController {
     }
 
     // Method to create a Commande from a Panier
-    public Commande createCommandeFromPanier(Panier panier, User user) {
-        Commande commande = new Commande();
-        commande.setProducts(panier.getProducts());
-        commande.setDateCommande(new Date());
-        commande.setQuantite(panier.getQuantite());
-        commande.setPrixTotale(panier.getPrixTotale());
-        // Set the user for the Commande
-        commande.setUser(user); // Assuming there's a setUser method in your Commande entity that accepts a User object
-        // Set other properties as needed
-        return commande;
-    }
+
 }
