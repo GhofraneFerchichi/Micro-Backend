@@ -247,7 +247,8 @@ public class PanierController {
         return ResponseEntity.ok(fullPanierResponse);
     }
 
-    @DeleteMapping(value = "/api/v1/mpanier/paniers/{id}")
+
+    @DeleteMapping(value = "/paniers/{id}")
     public ResponseEntity<Void> supprimerPanier(@PathVariable int id) {
         // Check if the panier exists
         Optional<Panier> optionalPanier = panierDao.findById(id);
