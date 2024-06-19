@@ -34,14 +34,14 @@ steps:
       targetType: 'inline'
       script: |
         Write-Host "Updating Deployment YAML file for user-microservice with new image tag"
-        $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/user-microservice-deployment.yaml"
+        $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
         $content = $content -replace 'image: ghofraneferchichi/microuserr:.+', "image: ghofraneferchichi/microuserr:$(Build.BuildId)"
         $content | Set-Content $yamlPath
 
   - task: PowerShell@2
-    displayName: Commit and push updated Deployment YAML files
+    displayName: Commit and push updated Deployment YAML file
     inputs:
       targetType: 'inline'
       script: |
@@ -50,8 +50,6 @@ steps:
         cd "$(Build.SourcesDirectory)/my-chart/templates"
         git checkout master  # Ensure you are on the correct branch
         git pull origin master  # Pull latest changes
-        # Use PowerShell to replace the image tag in the deployment.yaml file
-        (Get-Content user-microservice-deployment.yaml) -replace 'image: ghofraneferchichi/microuserr:.+', "image: ghofraneferchichi/microuserr:$(Build.BuildId)" | Set-Content user-microservice-deployment.yaml
-        git add user-microservice-deployment.yaml
-        git commit -m "Update Docker image tag to $(Build.BuildId) in user-microservice deployment YAML file"
+        git add deployment.yaml
+        git commit -m "Update Docker image tag to $(Build.BuildId) in deployment YAML file for user-microservice"
         git push origin master  # Push changes back to the repository
