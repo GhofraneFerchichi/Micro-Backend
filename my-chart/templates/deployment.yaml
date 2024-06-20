@@ -340,7 +340,7 @@ spec:
     spec:
       containers:
         - name: mpanier
-          image: ghofraneferchichi/micropannc:186
+          image: ghofraneferchichi/micropannc:188
           env:
             - name: SPRING_APPLICATION_NAME
               value: mpanier
@@ -484,6 +484,7 @@ spec:
       targetPort: 80
   type: LoadBalancer
   loadBalancerIP: 51.8.240.51
+
 
 
 
