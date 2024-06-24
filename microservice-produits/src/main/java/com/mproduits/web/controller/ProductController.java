@@ -129,6 +129,17 @@ public class ProductController {
 
     // Get User for a Product by its ID
 
+
+    @GetMapping("/products/{productId}/user")
+    public ResponseEntity<User> getUserForProduct() {
+        // Use the userId parameter as needed
+        User user = userFeignClient.getUserById(userFeignClient.getCurrentUser().getId()); // Assuming userFeignClient is properly configured
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping(value = "/produits")
     public List<ProductDTO> listeDesProduits() {
         List<Product> products = productDao.findAll();
@@ -149,15 +160,5 @@ public class ProductController {
         }
 
         return productDTOs;
-    }
-    @GetMapping("/products/{productId}/user")
-    public ResponseEntity<User> getUserForProduct() {
-        // Use the userId parameter as needed
-        User user = userFeignClient.getUserById(userFeignClient.getCurrentUser().getId()); // Assuming userFeignClient is properly configured
-        if (user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 }
