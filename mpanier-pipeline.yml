@@ -3,6 +3,18 @@ trigger:
     include:
       - master
 
+pr:
+  branches:
+    include:
+      - master
+
+resources:
+  repositories:
+    - repository: self
+      type: github
+      name: GhofraneFerchichi/Micro-Backend
+      endpoint: GitHubConnection
+
 pool:
   name: Default
   demands:
