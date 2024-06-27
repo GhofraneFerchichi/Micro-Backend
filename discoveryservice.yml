@@ -3,6 +3,18 @@ trigger:
     include:
       - master
 
+pr:
+  branches:
+    include:
+      - master
+
+resources:
+  repositories:
+    - repository: self
+      type: github
+      name: GhofraneFerchichi/Micro-Backend
+      endpoint: GitHubConnection
+
 pool:
   name: Default
   demands:
@@ -48,10 +60,11 @@ steps:
         git config --global user.email "ghofranefer01@gmail.com"
         git config --global user.name "GhofraneFerchichi"
         cd "$(Build.SourcesDirectory)/my-chart/templates"
+        git stash  # Stash any local changes
         git checkout master  # Ensure you are on the correct branch
         git pull origin master  # Pull latest changes
-        # Use PowerShell to replace the image tag in the deployment.yaml file
-        (Get-Content deployment.yaml) -replace 'image: ghofraneferchichi/discback:.+', "image: ghofraneferchichi/discback:$(Build.BuildId)" | Set-Content deployment.yaml
+        git stash pop  # Apply stashed changes
         git add deployment.yaml
-        git commit -m "Update Docker image tag to $(Build.BuildId) in discovery deployment YAML file"
+        git commit -m "Update Docker image tag to $(Build.BuildId) in panier deployment YAML file"
+        git pull --rebase origin master  # Rebase changes on top of the latest changes
         git push origin master  # Push changes back to the repository
