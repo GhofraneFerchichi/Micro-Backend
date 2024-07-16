@@ -65,6 +65,6 @@ steps:
         git pull origin master  # Pull latest changes
         git stash pop  # Apply stashed changes
         git add deployment.yaml
-        git commit -m "Update Docker image tag to $(Build.BuildId) in panier deployment YAML file"
+        git commit -m "Update Docker image tag to $(Build.BuildId) in deployment YAML file"
         git pull --rebase origin master  # Rebase changes on top of the latest changes
         git push origin master  # Push changes back to the repository
