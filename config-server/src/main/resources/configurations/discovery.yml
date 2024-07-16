@@ -5,11 +5,11 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://51.8.240.64:8761/eureka  # Updated Eureka server IP address
+      defaultZone: http://104.210.36.100:8761/eureka  # Updated Eureka server IP address
 server:
   port: 8761
 spring:
   config:
-    import: optional:configserver:http://51.8.240.21:9012  # Updated Config server IP address
+    import: optional:configserver:http://138.91.194.193:9012  # Updated Config server IP address
   application:
     name: discovery

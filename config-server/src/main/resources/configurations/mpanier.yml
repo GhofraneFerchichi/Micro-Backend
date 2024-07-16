@@ -3,7 +3,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://51.8.240.64:8761/eureka  # Updated Eureka server IP address
+      defaultZone: http://104.210.36.100:8761/eureka  # Updated Eureka server IP address
 
 server:
   port: 9005
@@ -12,14 +12,14 @@ spring:
   application:
     name: mpanier
   config:
-    import: optional:configserver:http://51.8.64.162:9012  # Updated Config server IP address
-    mproduits-url: http://172.171.82.118:9004  # Updated mproduits IP address
-    user-url: http://172.171.82.162:9010  # Updated user-microservice IP address
+    import: optional:configserver:http://138.91.194.193:9012  # Updated Config server IP address
+    mproduits-url: http://138.91.194.151:9004  # Updated mproduits IP address
+    user-url: http://138.91.192.17:9010  # Updated user-microservice IP address
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.171.82.162:3306/db  # Updated MySQL server IP address
+    url: jdbc:mysql://104.210.40.63:3306/db  # Updated MySQL server IP address
     username: root
-    password:
+    password: root  # Ensure the password is set correctly
   jpa:
     properties:
       hibernate:
