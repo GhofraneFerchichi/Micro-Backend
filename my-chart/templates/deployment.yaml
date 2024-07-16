@@ -57,7 +57,6 @@ spec:
       port: 3306
       targetPort: 3306
   type: LoadBalancer
-  loadBalancerIP: 172.171.82.162
 
 ---
 apiVersion: apps/v1
@@ -104,7 +103,6 @@ spec:
       port: 9012
       targetPort: 9012
   type: LoadBalancer
-  loadBalancerIP: 51.8.240.21
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -152,7 +150,6 @@ spec:
       port: 8761
       targetPort: 8761
   type: LoadBalancer
-  loadBalancerIP: 51.8.240.64
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -201,7 +198,6 @@ spec:
       port: 8007
       targetPort: 8007
   type: LoadBalancer
-  loadBalancerIP: 51.8.240.59
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -260,7 +256,6 @@ spec:
       port: 9010
       targetPort: 9010
   type: LoadBalancer
-  loadBalancerIP: 172.171.81.145
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -319,7 +314,6 @@ spec:
       port: 9009
       targetPort: 9009
   type: LoadBalancer
-  loadBalancerIP: 51.8.240.67
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -378,7 +372,6 @@ spec:
       port: 9005
       targetPort: 9005
   type: LoadBalancer
-  loadBalancerIP: 51.8.240.131
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -437,7 +430,6 @@ spec:
       port: 9004
       targetPort: 9004
   type: LoadBalancer
-  loadBalancerIP: 172.171.82.118
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -483,7 +475,6 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
-  loadBalancerIP: 51.8.240.51
 
 
 
