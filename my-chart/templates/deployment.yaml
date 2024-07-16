@@ -392,7 +392,7 @@ spec:
     spec:
       containers:
         - name: mproduits
-          image: ghofraneferchichi/prodback:192
+          image: ghofraneferchichi/prodback:214
           env:
             - name: SPRING_APPLICATION_NAME
               value: mproduits
@@ -475,6 +475,7 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
+
 
 
 
