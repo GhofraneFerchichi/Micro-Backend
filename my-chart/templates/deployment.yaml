@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: ghofraneferchichi/configserv:latest
+          image: ghofraneferchichi/configserv:225
           ports:
             - containerPort: 9012
           resources:
@@ -476,6 +476,7 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
+
 
 
 

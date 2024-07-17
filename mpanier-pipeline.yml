@@ -22,7 +22,7 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: 'DockerHubConnection'
-  imageRepository: 'ghofraneferchichi/micropannc'
+  imageRepository: 'ghofraneferchichi/configserv'
   tag: '$(Build.BuildId)'
 
 steps:
@@ -30,7 +30,7 @@ steps:
     displayName: Build and Push Docker image
     inputs:
       command: buildAndPush
-      dockerfile: '$(Build.SourcesDirectory)/DockerfilePanier'
+      dockerfile: '$(Build.SourcesDirectory)/config-server/Dockerfile'
       containerRegistry: '$(dockerRegistryServiceConnection)'
       repository: '$(imageRepository)'
       tags: $(tag)
@@ -41,15 +41,15 @@ steps:
     displayName: 'List Directory Contents'
 
   - task: PowerShell@2
-    displayName: Update Deployment YAML for panier
+    displayName: Update Deployment YAML for config-server
     inputs:
       targetType: 'inline'
       script: |
-        Write-Host "Updating Deployment YAML file for panier with new image tag"
+        Write-Host "Updating Deployment YAML file for config-server with new image tag"
         $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
-        $content = $content -replace 'image: ghofraneferchichi/micropannc:.+', "image: ghofraneferchichi/micropannc:$(Build.BuildId)"
+        $content = $content -replace 'image: ghofraneferchichi/configserv:.+', "image: ghofraneferchichi/configserv:$(Build.BuildId)"
         $content | Set-Content $yamlPath
 
   - task: PowerShell@2
@@ -59,12 +59,25 @@ steps:
       script: |
         git config --global user.email "ghofranefer01@gmail.com"
         git config --global user.name "GhofraneFerchichi"
-        cd "$(Build.SourcesDirectory)/my-chart/templates"
+        cd "$(Build.SourcesDirectory)"
         git stash  # Stash any local changes
         git checkout master  # Ensure you are on the correct branch
         git pull origin master  # Pull latest changes
         git stash pop  # Apply stashed changes
-        git add deployment.yaml
-        git commit -m "Update Docker image tag to $(Build.BuildId) in panier deployment YAML file"
+        if ($LASTEXITCODE -ne 0) {
+          Write-Host "Conflict detected. Attempting to resolve..."
+          git add my-chart/templates/deployment.yaml
+          git rebase --continue
+        }
+        git add my-chart/templates/deployment.yaml
+        git commit -m "Update Docker image tag to $(Build.BuildId) in configserver deployment YAML file"
         git pull --rebase origin master  # Rebase changes on top of the latest changes
+        if ($LASTEXITCODE -ne 0) {
+          Write-Host "Conflict during rebase. Attempting to resolve..."
+          git rebase --continue
+        }
         git push origin master  # Push changes back to the repository
+        if ($LASTEXITCODE -ne 0) {
+          Write-Host "Push failed. Please resolve the conflict manually."
+          exit 1
+        }
