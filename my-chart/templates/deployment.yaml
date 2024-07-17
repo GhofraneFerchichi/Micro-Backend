@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: ghofraneferchichi/configserv:225
+          image: ghofraneferchichi/configserv:227
           ports:
             - containerPort: 9012
           resources:
