@@ -246,8 +246,6 @@ public class PanierController {
         fullPanierResponse.setProducts(updatedPanier.getProducts());
         return ResponseEntity.ok(fullPanierResponse);
     }
-
-
     @DeleteMapping(value = "/paniers/{id}")
     public ResponseEntity<Void> supprimerPanier(@PathVariable int id) {
         // Check if the panier exists
@@ -261,5 +259,7 @@ public class PanierController {
 
         return ResponseEntity.noContent().build();
     }
+
+
 
 }

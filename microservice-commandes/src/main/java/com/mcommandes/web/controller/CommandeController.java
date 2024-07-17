@@ -86,11 +86,7 @@ public class CommandeController {
 
 
 
-    @GetMapping("/paniers/{panierId}/totalPrice")
-    public double getTotalPriceOfPanier(@PathVariable int panierId) {
-        Panier panier = panierClient.getPanierById(panierId);
-        return panier.getPrixTotale();
-    }
+
 
     public Commande createCommandeFromPanier(Panier panier, User user) {
         Commande commande = new Commande();
@@ -102,6 +98,11 @@ public class CommandeController {
         commande.setUser(user); // Assuming there's a setUser method in your Commande entity that accepts a User object
         // Set other properties as needed
         return commande;
+    }
+    @GetMapping("/paniers/{panierId}/totalPrice")
+    public double getTotalPriceOfPanier(@PathVariable int panierId) {
+        Panier panier = panierClient.getPanierById(panierId);
+        return panier.getPrixTotale();
     }
 
     @GetMapping("/commandes")
