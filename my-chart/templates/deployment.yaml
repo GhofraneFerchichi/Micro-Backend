@@ -123,7 +123,7 @@ spec:
     spec:
       containers:
         - name: discovery
-          image: ghofraneferchichi/discback:211
+          image: ghofraneferchichi/discback:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -170,7 +170,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghofraneferchichi/gatewayback:212
+          image: ghofraneferchichi/gatewayback:latest
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
@@ -218,7 +218,7 @@ spec:
     spec:
       containers:
         - name: user-microservice
-          image: ghofraneferchichi/microuserr:206
+          image: ghofraneferchichi/microuserr:latest
           env:
             - name: SPRING_APPLICATION_NAME
               value: user-microservice
@@ -276,7 +276,7 @@ spec:
     spec:
       containers:
         - name: mcommandes
-          image: ghofraneferchichi/microcommm:215
+          image: ghofraneferchichi/microcommm:193
           env:
             - name: SPRING_APPLICATION_NAME
               value: mcommandes
@@ -334,7 +334,7 @@ spec:
     spec:
       containers:
         - name: mpanier
-          image: ghofraneferchichi/micropannc:207
+          image: ghofraneferchichi/micropannc:191
           env:
             - name: SPRING_APPLICATION_NAME
               value: mpanier
@@ -392,7 +392,7 @@ spec:
     spec:
       containers:
         - name: mproduits
-          image: ghofraneferchichi/prodback:214
+          image: ghofraneferchichi/prodback:192
           env:
             - name: SPRING_APPLICATION_NAME
               value: mproduits
@@ -475,9 +475,6 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
-
-
-
 
 
 
