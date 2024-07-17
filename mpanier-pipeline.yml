@@ -22,7 +22,7 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: 'DockerHubConnection'
-  imageRepository: 'ghofraneferchichi/configserv'
+  imageRepository: 'ghofraneferchichi/micropannc'
   tag: '$(Build.BuildId)'
 
 steps:
@@ -30,7 +30,7 @@ steps:
     displayName: Build and Push Docker image
     inputs:
       command: buildAndPush
-      dockerfile: '$(Build.SourcesDirectory)/config-server/Dockerfile'
+      dockerfile: '$(Build.SourcesDirectory)/microservice-panier/Dockerfile'
       containerRegistry: '$(dockerRegistryServiceConnection)'
       repository: '$(imageRepository)'
       tags: $(tag)
@@ -41,15 +41,15 @@ steps:
     displayName: 'List Directory Contents'
 
   - task: PowerShell@2
-    displayName: Update Deployment YAML for config-server
+    displayName: Update Deployment YAML for mpanier
     inputs:
       targetType: 'inline'
       script: |
-        Write-Host "Updating Deployment YAML file for config-server with new image tag"
+        Write-Host "Updating Deployment YAML file for mpanier with new image tag"
         $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
-        $content = $content -replace 'image: ghofraneferchichi/configserv:.+', "image: ghofraneferchichi/configserv:$(Build.BuildId)"
+        $content = $content -replace 'image: ghofraneferchichi/micropannc:.+', "image: ghofraneferchichi/micropannc:$(Build.BuildId)"
         $content | Set-Content $yamlPath
 
   - task: PowerShell@2
@@ -70,7 +70,7 @@ steps:
           git rebase --continue
         }
         git add my-chart/templates/deployment.yaml
-        git commit -m "Update Docker image tag to $(Build.BuildId) in configserver deployment YAML file"
+        git commit -m "Update Docker image tag to $(Build.BuildId) in mpanier deployment YAML file"
         git pull --rebase origin master  # Rebase changes on top of the latest changes
         if ($LASTEXITCODE -ne 0) {
           Write-Host "Conflict during rebase. Attempting to resolve..."
