@@ -83,6 +83,7 @@ spec:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           image: ghofraneferchichi/configserv:210
 =======
           image: ghofraneferchichi/configserv:213
@@ -98,6 +99,9 @@ spec:
 >>>>>>> Stashed changes
 =======
           image: ghofraneferchichi/configserv:238
+>>>>>>> Stashed changes
+=======
+          image: ghofraneferchichi/configserv:239
 >>>>>>> Stashed changes
           ports:
             - containerPort: 9012
@@ -519,6 +523,10 @@ spec:
 >>>>>>> Stashed changes
 =======
 
+>>>>>>> Stashed changes
+=======
+
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 
