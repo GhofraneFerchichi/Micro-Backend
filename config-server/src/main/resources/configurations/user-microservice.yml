@@ -7,7 +7,6 @@ eureka:
 
 server:
   port: 9010
-
 spring:
   application:
     name: user-microservice

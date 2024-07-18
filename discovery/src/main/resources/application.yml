@@ -9,6 +9,6 @@ server:
   port: 8761
 spring:
   config:
-    import: optional:configserver:http://138.91.194.193:9012  # Updated Config server IP address
+    import: optional:configserver:http://138.91.194.193:9012  # Updated Config server IP addresss
   application:
     name: discovery
