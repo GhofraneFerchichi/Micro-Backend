@@ -9,32 +9,32 @@ mysql:
   rootPassword: root
 
 config-server:
-  image: ghofraneferchichi/config
+  image: ghofraneferchichi/configserv
   port: 9012
 
 discovery:
-  image: ghofraneferchichi/disc
+  image: ghofraneferchichi/discback
   port: 8761
 
 gateway:
-  image: ghofraneferchichi/gate
+  image: ghofraneferchichi/gatewayback
   port: 8007
 
 user-microservice:
-  image: ghofraneferchichi/user
+  image: ghofraneferchichi/microuserr
   port: 9010
 
 commande-microservice:
-  image: ghofraneferchichi/comm
+  image: ghofraneferchichi/microcommm
   port: 9009
 
 panier-microservice:
-  image: ghofraneferchichi/pan
+  image: ghofraneferchichi/micropannc
   port: 9005
 
 produits-microservice:
-  image: ghofraneferchichi/prod
+  image: ghofraneferchichi/prodback
   port: 9004
 frontend:
-  image: ghofraneferchichi/imagetree
+  image: ghofraneferchichi/lastimage
   port: 80
