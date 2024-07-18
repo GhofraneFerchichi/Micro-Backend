@@ -14,6 +14,8 @@ public interface ProductClient {
     @GetMapping(value = "/api/v1/mproduits/produits/{id}")
     public Product recupererUnProduit(@PathVariable int id);
 
+
+
     @PutMapping(value = "/api/v1/mproduits/produits/{id}")
     public Product modifierProduit(@PathVariable int id, @RequestBody Product produitModifie);
 
