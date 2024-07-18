@@ -28,11 +28,32 @@ spring:
   main:
     allow-bean-definition-overriding: true  # Enable bean definition overriding
 
-## File upload settings
+# File upload settings
 spring.servlet.multipart.max-file-size: 2MB
 spring.servlet.multipart.max-request-size: 2MB
 
-## Payment Stripe API
-stripe:
-  key:
-    secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb
+# Payment Stripe API
+stripe.key.secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb3oSaBjxB9oOETbDZAgeHvwcoSK3Qmg1RGjT2QuiLIiV3zF1XDkdoix300JyfSeCvJ
+
+# JWT Configuration
+spring.data.rest.base-path: /api
+app.jwt.secret: RandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKey
+app.jwt.expiration-in-ms: 86400000
+authentication.internal-api-key: Internal!@
+spring.main.allow-circular-references: true
+spring.main.allow-bean-definition-overriding: true
+
+allowed.origins: https://localhost:4200
+
+# Email Configuration
+spring.mail:
+  host: smtp.gmail.com
+  port: 587
+  username: ghofrane.ferchichi@edu.isetcom.tn
+  password: zzxvnoeavrsbsiwc
+  properties:
+    mail.smtp.auth: true
+    mail.smtp.connectiontimeout: 5000
+    mail.smtp.timeout: 5000
+    mail.smtp.writetimeout: 5000
+    mail.smtp.starttls.enable: true
