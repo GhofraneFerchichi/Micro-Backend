@@ -170,7 +170,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghofraneferchichi/gatewayback:latest
+          image: ghofraneferchichi/gatewayback:237
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring.datasource.url": "jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
