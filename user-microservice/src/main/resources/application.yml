@@ -25,10 +25,14 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
+  main:
+    allow-bean-definition-overriding: true  # Enable bean definition overriding
 
 ## File upload settings
 spring.servlet.multipart.max-file-size: 2MB
 spring.servlet.multipart.max-request-size: 2MB
 
 ## Payment Stripe API
-stripe.key.secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb
+stripe:
+  key:
+    secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb
