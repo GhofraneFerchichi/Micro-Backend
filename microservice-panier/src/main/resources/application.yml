@@ -14,7 +14,7 @@ spring:
   config:
     import: optional:configserver:http://138.91.194.193:9012  # Updated Config server IP address
     mproduits-url: http://138.91.194.151:9004  # Updated mproduits service URL
-    user-url: http://138.91.192.17:9010  # Updated user service URL
+    user-url: http://138.91.192.17:9010  # Updated user service URL ip
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://104.210.40.63:3306/db?createDatabaseIfNotExist=true  # Updated MySQL server IP address
