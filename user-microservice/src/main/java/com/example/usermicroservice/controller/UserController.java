@@ -54,6 +54,9 @@ public class UserController {
         return new ResponseEntity<>( HttpStatus.OK);
     }
 
+
+
+
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
         if (userService.verify(code)) {
