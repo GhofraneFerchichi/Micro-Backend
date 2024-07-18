@@ -284,7 +284,7 @@ spec:
     spec:
       containers:
         - name: mcommandes
-          image: ghofraneferchichi/microcommm:226
+          image: ghofraneferchichi/microcommm:242
           env:
             - name: SPRING_APPLICATION_NAME
               value: mcommandes
