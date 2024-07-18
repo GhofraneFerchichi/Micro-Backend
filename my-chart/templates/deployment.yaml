@@ -78,7 +78,31 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: ghofraneferchichi/configserv:227
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+          image: ghofraneferchichi/configserv:210
+=======
+          image: ghofraneferchichi/configserv:213
+>>>>>>> Stashed changes
+=======
+          image: ghofraneferchichi/configserv:216
+>>>>>>> Stashed changes
+=======
+          image: ghofraneferchichi/configserv:222
+>>>>>>> Stashed changes
+=======
+          image: ghofraneferchichi/configserv:224
+>>>>>>> Stashed changes
+=======
+          image: ghofraneferchichi/configserv:238
+>>>>>>> Stashed changes
+=======
+          image: ghofraneferchichi/configserv:239
+>>>>>>> Stashed changes
           ports:
             - containerPort: 9012
           resources:
@@ -123,10 +147,10 @@ spec:
     spec:
       containers:
         - name: discovery
-          image: ghofraneferchichi/discback:240
+          image: ghofraneferchichi/discback:latest
           env:
             - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+              value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8761
           resources:
@@ -170,10 +194,10 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: ghofraneferchichi/gatewayback:237
+          image: ghofraneferchichi/gatewayback:latest
           env:
             - name: SPRING_APPLICATION_JSON
-              value: '{"spring.datasource.url": "jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
+              value: '{"spring.datasource.url": "jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "spring.datasource.username": "root", "spring.datasource.password": "root", "spring.jpa.hibernate.ddl-auto": "update"}'
           ports:
             - containerPort: 8007
           resources:
@@ -218,14 +242,14 @@ spec:
     spec:
       containers:
         - name: user-microservice
-          image: ghofraneferchichi/microuserr:244
+          image: ghofraneferchichi/microuserr:latest
           env:
             - name: SPRING_APPLICATION_NAME
               value: user-microservice
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://104.210.36.100:8761/eureka
+              value: http://51.8.240.64:8761/eureka
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
@@ -276,14 +300,14 @@ spec:
     spec:
       containers:
         - name: mcommandes
-          image: ghofraneferchichi/microcommm:242
+          image: ghofraneferchichi/microcommm:193
           env:
             - name: SPRING_APPLICATION_NAME
               value: mcommandes
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://104.210.36.100:8761/eureka
+              value: http://51.8.240.64:8761/eureka
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
@@ -334,14 +358,14 @@ spec:
     spec:
       containers:
         - name: mpanier
-          image: ghofraneferchichi/micropannc:243
+          image: ghofraneferchichi/micropannc:191
           env:
             - name: SPRING_APPLICATION_NAME
               value: mpanier
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://104.210.36.100:8761/eureka
+              value: http://51.8.240.64:8761/eureka
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
@@ -373,7 +397,6 @@ spec:
       targetPort: 9005
   type: LoadBalancer
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -398,9 +421,9 @@ spec:
             - name: SPRING_APPLICATION_NAME
               value: mproduits
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://104.210.36.100:8761/eureka
+              value: http://51.8.240.64:8761/eureka
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://104.210.40.63:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+              value: jdbc:mysql://172.171.82.162:3306/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
@@ -451,7 +474,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghofraneferchichi/lastimage:latest
+          image: ghofraneferchichi/lastimage:1
           ports:
             - containerPort: 80
           resources:
@@ -486,9 +509,32 @@ spec:
 
 
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
 
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 
+>>>>>>> Stashed changes
+=======
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+
+>>>>>>> Stashed changes
+=======
+
+>>>>>>> Stashed changes
