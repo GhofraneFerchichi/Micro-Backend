@@ -19,6 +19,11 @@ public class AuthenticationController {
     @Autowired
     private UserServiceImpl userService;
 
+    @PostMapping("/sign-in")
+    public ResponseEntity<User> signIn(@RequestBody User user){
+        User Suser = authenticationService.SignInAndReturnJWT(user);
+        return new ResponseEntity<>(Suser, HttpStatus.OK);
+    }
 
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@RequestBody User user){
@@ -31,11 +36,6 @@ public class AuthenticationController {
         return new ResponseEntity<>(Suser, HttpStatus.CREATED);
     }
 
-    @PostMapping("/sign-in")
-    public ResponseEntity<User> signIn(@RequestBody User user){
-        User Suser = authenticationService.SignInAndReturnJWT(user);
-        return new ResponseEntity<>(Suser, HttpStatus.OK);
-    }
 
 
 }
