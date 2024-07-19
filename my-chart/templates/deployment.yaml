@@ -450,7 +450,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghofraneferchichi/frontshopp:1
+          image: ghofraneferchichi/frontshopp:2
           ports:
             - containerPort: 80
           resources:
