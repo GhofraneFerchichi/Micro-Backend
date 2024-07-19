@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: 138.91.192.17  # Updated with the user-microservice external IP
+    hostname: 104.210.44.173  # Updated with the user-microservice external IP
   client:
     serviceUrl:
       defaultZone: http://104.210.36.100:8761/eureka  # Updated Eureka defaultZone

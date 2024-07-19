@@ -13,7 +13,7 @@ spring:
     name: mcommandes
   config:
     import: optional:configserver:http://138.91.194.193:9012  # Updated Config server IP address
-    user-url: http://138.91.192.17:9010  # Updated user service URL
+    user-url: http://104.210.44.173:9010  # Updated user service URL
     mproduits-url: http://138.91.194.151:9004  # Updated mproduits service URL
     mpanier-url: http://104.210.32.234:9005  # Updated mpanier service URL
   datasource:
