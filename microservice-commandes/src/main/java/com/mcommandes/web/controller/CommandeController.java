@@ -46,6 +46,7 @@ public class CommandeController {
         commande.setQuantite(panier.getQuantite());
         commande.setCommandePayee(false);
         commande.setUser(user);
+        commande.setPrixTotale(getTotalPriceOfPanier(1));
 
         // Fetch products from panier
         List<Product> panierProducts = panier.getProducts();
