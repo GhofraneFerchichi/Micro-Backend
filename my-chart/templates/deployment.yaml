@@ -218,7 +218,7 @@ spec:
     spec:
       containers:
         - name: user-microservice
-          image: ghofraneferchichi/microuserr:251
+          image: ghofraneferchichi/microuserr:256
           env:
             - name: SPRING_APPLICATION_NAME
               value: user-microservice
