@@ -31,11 +31,11 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
           resources:
             requests:
-              memory: "3Gi"
-              cpu: "700m"
+              memory: "1Gi"
+              cpu: "500m"
             limits:
-              memory: "7Gi"
-              cpu: "900m"
+              memory: "2Gi"
+              cpu: "700m"
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
