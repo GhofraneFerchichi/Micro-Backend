@@ -437,9 +437,9 @@ metadata:
   name: frontend
   annotations:
     argocd-image-updater.argoproj.io/allow-tags: "*"
-    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/lastimage"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/frontshopp"
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: frontend
