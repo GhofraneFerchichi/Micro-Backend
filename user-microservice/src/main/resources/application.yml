@@ -37,7 +37,7 @@ stripe.key.secret: sk_test_51HGXXNFZZEoYtESMGVTRVixCsC9oFknTb3oSaBjxB9oOETbDZAge
 
 # JWT Configuration
 spring.data.rest.base-path: /api
-app.jwt.secret: RandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKeyRandomSecretKey
+app.jwt.secret: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikdob2ZyYW5lIEZlcmNoaWNoaSIsImlhdCI6MTUxNjIzOTAyMn0.JiGoQ2WGzlzlkTFzuajIvoSIJq2yHb4Tem-AOb1JkMw
 app.jwt.expiration-in-ms: 86400000
 authentication.internal-api-key: Internal!@
 spring.main.allow-circular-references: true
