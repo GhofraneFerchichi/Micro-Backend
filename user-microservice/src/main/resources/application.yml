@@ -50,7 +50,7 @@ spring.mail:
   host: smtp.gmail.com
   port: 587
   username: ghofrane.ferchichi@edu.isetcom.tn
-  password: zzxvnoeavrsbsiwc
+  password: lmxehqljxgqqhmbv
   properties:
     mail.smtp.auth: true
     mail.smtp.connectiontimeout: 5000
