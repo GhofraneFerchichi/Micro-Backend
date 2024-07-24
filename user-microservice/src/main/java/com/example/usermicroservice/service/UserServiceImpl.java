@@ -190,6 +190,7 @@ public class UserServiceImpl  {
     }
 
     public void updatePassword(User customer, String newPassword) {
+
         String encodedPassword = passwordEncoder.encode(newPassword);
         customer.setPassword(encodedPassword);
 
