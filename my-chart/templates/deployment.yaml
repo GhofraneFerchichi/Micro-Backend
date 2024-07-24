@@ -437,7 +437,7 @@ metadata:
   name: frontend
   annotations:
     argocd-image-updater.argoproj.io/allow-tags: "*"
-    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/frontshopp"
+    argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/frontshoppp"
 spec:
   replicas: 1
   selector:
@@ -450,7 +450,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghofraneferchichi/frontshopp:2
+          image: ghofraneferchichi/frontshoppp:1
           ports:
             - containerPort: 80
           resources:
