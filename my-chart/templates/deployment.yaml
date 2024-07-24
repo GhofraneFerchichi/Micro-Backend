@@ -218,7 +218,7 @@ spec:
     spec:
       containers:
         - name: user-microservice
-          image: ghofraneferchichi/microuserr:259
+          image: ghofraneferchichi/microuserr:260
           env:
             - name: SPRING_APPLICATION_NAME
               value: user-microservice
@@ -475,6 +475,7 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
+
 
 
 
