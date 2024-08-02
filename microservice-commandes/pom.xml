@@ -74,8 +74,6 @@
 		</dependency>
 
 		<!-- Spring Cloud Starter Netflix Eureka Client -->
-
-
 		<dependency>
 			<groupId>com.mproduits</groupId>
 			<artifactId>mproduits</artifactId>
