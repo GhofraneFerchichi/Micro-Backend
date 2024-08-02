@@ -17,20 +17,32 @@ resources:
 
 pool:
   name: Default
-  demands:
-    - agent.name -equals DESKTOP-47P7H1A
 
 variables:
   dockerRegistryServiceConnection: 'DockerHubConnection'
-  imageRepository: 'ghofraneferchichi/gatewayback'
+  imageRepository: 'ghofraneferchichi/microcommm'
   tag: '$(Build.BuildId)'
 
 steps:
+  - task: Maven@3
+    displayName: 'Run Unit Tests'
+    inputs:
+      mavenPomFile: '$(Build.SourcesDirectory)/pom.xml'
+      goals: 'test'
+      options: '-Dmaven.test.failure.ignore=true'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      testResultsFormat: 'JUnit'
+      failTaskOnFailedTests: true
+
   - task: Docker@2
     displayName: Build and Push Docker image
     inputs:
       command: buildAndPush
-      dockerfile: '$(Build.SourcesDirectory)/gateway/Dockerfile'
+      dockerfile: '$(Build.SourcesDirectory)/DockerfileCommandes'
       containerRegistry: '$(dockerRegistryServiceConnection)'
       repository: '$(imageRepository)'
       tags: $(tag)
@@ -41,16 +53,17 @@ steps:
     displayName: 'List Directory Contents'
 
   - task: PowerShell@2
-    displayName: Update Deployment YAML for gateway
+    displayName: Update Deployment YAML for commandes
     inputs:
       targetType: 'inline'
       script: |
-        Write-Host "Updating Deployment YAML file for gateway with new image tag"
+        Write-Host "Updating Deployment YAML file with new image tag"
         $yamlPath = "$(Build.SourcesDirectory)/my-chart/templates/deployment.yaml"
         Write-Host "YAML Path: $yamlPath"
         $content = Get-Content $yamlPath -Raw
-        $content = $content -replace 'image: ghofraneferchichi/gatewayback:.+', "image: ghofraneferchichi/gatewayback:$(Build.BuildId)"
+        $content = $content -replace 'image: ghofraneferchichi/microcommm:.+', "image: ghofraneferchichi/microcommm:$(Build.BuildId)"
         $content | Set-Content $yamlPath
+
   - task: PowerShell@2
     displayName: Commit and push updated Deployment YAML files
     inputs:
