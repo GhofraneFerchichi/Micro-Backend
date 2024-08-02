@@ -76,6 +76,8 @@ public class CommandeControllerTest {
         verify(commandesDao, times(1)).flush();
     }
 
+
+
     @Test
     public void testGetTotalPriceOfPanier() {
         Panier panier = new Panier();
