@@ -17,8 +17,6 @@ resources:
 
 pool:
   name: Default
-  demands:
-    - agent.name -equals DESKTOP-47P7H1A
 
 variables:
   dockerRegistryServiceConnection: 'DockerHubConnection'
