@@ -27,7 +27,7 @@ steps:
   - task: Maven@3
     displayName: 'Run Unit Tests'
     inputs:
-      mavenPomFile: '$(Build.SourcesDirectory)/pom.xml'
+      mavenPomFile: '$(Build.SourcesDirectory)/Micro-Backend/microservice-commandes/pom.xml'
       goals: 'test'
       options: '-Dmaven.test.failure.ignore=true'
 
