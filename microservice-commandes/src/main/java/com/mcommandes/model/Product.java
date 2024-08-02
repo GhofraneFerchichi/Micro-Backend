@@ -29,5 +29,8 @@ public class Product {
 
     private int quantite;
 
+    public Product(int id, String product1, String description1, double v) {
+    }
+
     // Getter and setter for paniers
 }

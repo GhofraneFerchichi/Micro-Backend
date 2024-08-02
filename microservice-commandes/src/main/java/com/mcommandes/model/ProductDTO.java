@@ -12,5 +12,8 @@ public class ProductDTO  {
     private double prix;
     private String imageBase64; // Base64-encoded image string
 
+    public ProductDTO(int id, String product1, String description1, double v) {
+    }
+
     // Getters and setters...
 }

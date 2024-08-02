@@ -26,6 +26,20 @@ variables:
   tag: '$(Build.BuildId)'
 
 steps:
+  - task: Maven@3
+    displayName: 'Run Unit Tests'
+    inputs:
+      mavenPomFile: '$(Build.SourcesDirectory)/pom.xml'
+      goals: 'test'
+      options: '-Dmaven.test.failure.ignore=true'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      testResultsFormat: 'JUnit'
+      failTaskOnFailedTests: true
+
   - task: Docker@2
     displayName: Build and Push Docker image
     inputs:
