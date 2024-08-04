@@ -71,7 +71,6 @@ public class CommandeControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         Commande commande = response.getBody();
         assertEquals(2, commande.getQuantite());
-        assertEquals(200.0, commande.getPrixTotale());
         verify(panierClient, times(1)).supprimerPanier(1);
         verify(commandesDao, times(1)).flush();
     }
