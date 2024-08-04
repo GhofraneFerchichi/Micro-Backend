@@ -28,7 +28,6 @@ spring:
           uri: lb://user-microservice
           predicates:
             - Path=/api/authentication/**, /user/**
-
 management:
   tracing:
     sampling:
