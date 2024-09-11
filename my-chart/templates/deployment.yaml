@@ -207,7 +207,7 @@ metadata:
     argocd-image-updater.argoproj.io/allow-tags: "*"
     argocd-image-updater.argoproj.io/image-list: "ghofraneferchichi/microuserr"
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: user-microservice
